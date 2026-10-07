@@ -1,0 +1,11 @@
+{
+  "name": "nafha-tools",
+  "private": true,
+  "description": "Dev tooling: demo product image generation.",
+  "scripts": {
+    "images": "node images/generate.js"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.0"
+  }
+}

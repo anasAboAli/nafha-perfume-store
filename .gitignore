@@ -11,3 +11,6 @@
 /tools/wp-cli.phar
 .local-credentials.txt
 *.log
+
+/tools/node_modules/
+/tools/images/out/

@@ -1,0 +1,360 @@
+/**
+ * Single product page (nafha-core). Uses the child theme's --nafha-* tokens
+ * when present, with fallbacks so the plugin still looks sane on any theme.
+ */
+
+.single-product {
+	--np-ink: var(--nafha-ink, #2b2130);
+	--np-gold: var(--nafha-gold, #b08a57);
+	--np-line: var(--nafha-line, #e7ded2);
+	--np-sand: var(--nafha-sand, #f3ede4);
+	--np-muted: var(--nafha-muted, #8a8190);
+	--np-radius: var(--nafha-radius, 10px);
+}
+
+/* ------------------------------------------------------ brand + name */
+
+.nafha-brand {
+	display: inline-block;
+	margin-block-end: 6px;
+	color: var(--np-gold);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.nafha-name-en {
+	margin-block: -6px 14px;
+	color: var(--np-muted);
+	font-size: 15px;
+	text-align: end; /* Latin text sits on the same side as the Arabic title in RTL. */
+}
+
+/* ----------------------------------------------------- size buttons */
+
+.nafha-swatch-select {
+	position: absolute !important;
+	inline-size: 1px !important;
+	block-size: 1px !important;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.nafha-swatches {
+	display: grid;
+	flex: 1 1 100%; /* Blocksy lays the value cell out as a flex row. */
+	grid-template-columns: repeat(auto-fit, minmax(74px, 1fr));
+	gap: 8px;
+	margin-block: 4px 6px;
+}
+
+.nafha-swatch {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	min-block-size: 58px;
+	padding: 8px 6px;
+	border: 1.5px solid var(--np-line);
+	border-radius: var(--np-radius);
+	background: #fff;
+	color: var(--np-ink);
+	cursor: pointer;
+	transition: border-color .15s, background-color .15s, box-shadow .15s;
+}
+
+.nafha-swatch:hover {
+	border-color: var(--np-gold);
+}
+
+.nafha-swatch[aria-checked="true"] {
+	border-color: var(--np-ink);
+	background: var(--np-ink);
+	color: #fff;
+	box-shadow: 0 4px 14px rgb(43 33 48 / 18%);
+}
+
+.nafha-swatch__name {
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.nafha-swatch__price {
+	font-size: 12px;
+	opacity: .8;
+}
+
+.nafha-swatch.is-out .nafha-swatch__name,
+.nafha-swatch.is-out .nafha-swatch__price {
+	text-decoration: line-through;
+	opacity: .5;
+}
+
+.nafha-swatch.is-unavailable {
+	opacity: .35;
+	cursor: not-allowed;
+}
+
+/* The chosen size's price already replaces the main price. */
+.single-product .woocommerce-variation-price {
+	display: none;
+}
+
+.single-product table.variations th.label,
+.single-product table.variations td.label {
+	padding-block-end: 4px;
+	font-weight: 700;
+}
+
+.single-product .reset_variations {
+	font-size: 13px;
+}
+
+/* --------------------------------------------------- stock indicator */
+
+.single-product .stock {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin-block: 8px;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.single-product .stock::before {
+	content: "";
+	inline-size: 8px;
+	block-size: 8px;
+	border-radius: 50%;
+	background: currentColor;
+}
+
+.single-product .stock.in-stock {
+	color: #2f7d4f;
+}
+
+.single-product .stock.nafha-low-stock {
+	color: #b4690e;
+}
+
+.single-product .stock.out-of-stock {
+	color: #b3261e;
+}
+
+/* --------------------------------------------------- WhatsApp button */
+
+.single-product form.cart {
+	flex-wrap: wrap;
+}
+
+.nafha-wa-btn.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	flex-basis: 100%;
+	margin-block-start: 10px;
+	background: #1fa855;
+	border-color: #1fa855;
+	color: #fff;
+}
+
+.nafha-wa-btn.button:hover {
+	background: #188a46;
+	border-color: #188a46;
+	color: #fff;
+}
+
+.nafha-wa-btn[aria-disabled="true"] {
+	opacity: .6;
+}
+
+/* -------------------------------------------------- fragrance profile */
+
+.nafha-profile {
+	margin-block: 24px;
+	padding: 20px;
+	border: 1px solid var(--np-line);
+	border-radius: var(--nafha-radius-lg, 16px);
+	background: var(--np-sand);
+}
+
+.nafha-profile__title {
+	margin-block: 0 16px;
+	font-size: 18px;
+}
+
+.nafha-pyramid {
+	display: grid;
+	gap: 12px;
+}
+
+.nafha-pyramid__row {
+	display: grid;
+	grid-template-columns: 110px 1fr;
+	align-items: start;
+	gap: 10px;
+}
+
+.nafha-pyramid__label {
+	padding-block-start: 5px;
+	color: var(--np-muted);
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.nafha-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.nafha-chips li {
+	margin: 0;
+	padding: 4px 12px;
+	border: 1px solid var(--np-line);
+	border-radius: 999px;
+	background: #fff;
+	font-size: 13px;
+}
+
+.nafha-meters {
+	display: grid;
+	gap: 10px;
+	margin-block-start: 18px;
+	padding-block-start: 16px;
+	border-block-start: 1px dashed var(--np-line);
+}
+
+.nafha-meter {
+	display: grid;
+	grid-template-columns: 110px 1fr auto;
+	align-items: center;
+	gap: 10px;
+	font-size: 13px;
+}
+
+.nafha-meter__label {
+	color: var(--np-muted);
+	font-weight: 500;
+}
+
+.nafha-meter__bar {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 4px;
+}
+
+.nafha-meter__seg {
+	block-size: 6px;
+	border-radius: 3px;
+	background: var(--np-line);
+}
+
+.nafha-meter__seg.is-on {
+	background: var(--np-gold);
+}
+
+.nafha-meter__value {
+	min-inline-size: 80px;
+	font-weight: 500;
+}
+
+.nafha-facts {
+	display: grid;
+	gap: 8px;
+	margin: 18px 0 0;
+	padding-block-start: 16px;
+	border-block-start: 1px dashed var(--np-line);
+	font-size: 14px;
+}
+
+.nafha-facts__row {
+	display: grid;
+	grid-template-columns: 110px 1fr;
+	gap: 10px;
+}
+
+.nafha-facts dt {
+	color: var(--np-muted);
+	font-weight: 500;
+}
+
+.nafha-facts dd {
+	margin: 0;
+}
+
+@media (max-width: 480px) {
+	.nafha-pyramid__row,
+	.nafha-facts__row {
+		grid-template-columns: 1fr;
+		gap: 6px;
+	}
+
+	.nafha-meter {
+		grid-template-columns: 70px 1fr auto;
+	}
+}
+
+/* -------------------------------------------------------------- video */
+
+.nafha-video {
+	margin-block: 32px;
+}
+
+.nafha-video .wp-video {
+	width: 100% !important; /* Core sets an inline 640px width. */
+}
+
+.nafha-video iframe,
+.nafha-video video {
+	inline-size: 100%;
+	aspect-ratio: 16 / 9;
+	block-size: auto;
+	border-radius: var(--np-radius);
+}
+
+/* ------------------------------------------------------ review photos */
+
+.nafha-review-photo input[type="file"] {
+	display: block;
+	margin-block: 6px 4px;
+}
+
+.nafha-review-photo small {
+	color: var(--np-muted);
+}
+
+.nafha-review-photo-thumb img {
+	inline-size: 96px;
+	block-size: 96px;
+	margin-block-start: 8px;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+/* Variation table → stacked label + full-width buttons (WooCommerce renders a 2-column table). */
+.single-product table.variations,
+.single-product table.variations tbody,
+.single-product table.variations tr,
+.single-product table.variations th,
+.single-product table.variations td {
+	display: block;
+	inline-size: 100%;
+	padding-inline: 0;
+	text-align: start;
+}
+
+.single-product table.variations td.value {
+	flex-wrap: wrap;
+}

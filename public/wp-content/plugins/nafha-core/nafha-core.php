@@ -32,6 +32,12 @@ function nafha_core_boot() {
 	$modules = array(
 		'class-qatar-areas.php',
 		'class-shipping.php',
+		'class-settings.php',
+		'class-fragrance-profile.php',
+		'class-variation-buttons.php',
+		'class-whatsapp.php',
+		'class-product-page.php',
+		'class-review-photos.php',
 	);
 
 	foreach ( $modules as $module ) {

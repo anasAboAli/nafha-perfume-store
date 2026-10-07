@@ -91,6 +91,7 @@ $options = array(
 	'woocommerce_email_base_color'         => '#2b2130',
 	'woocommerce_email_background_color'   => '#f6f1ea',
 	'woocommerce_coming_soon'              => 'no',
+	'nafha_whatsapp_number'                => '970598143863', // Client-provided store WhatsApp.
 	// Fixed Latin URL bases: otherwise WooCommerce uses the translated (Arabic, space-containing) defaults.
 	'woocommerce_brand_permalink'          => 'brand',
 	'woocommerce_permalinks'               => array(
@@ -558,6 +559,24 @@ $sidebars['ct-footer-sidebar-1'] = array( 'block-1' );
 $sidebars['ct-footer-sidebar-2'] = array( 'nav_menu-1' );
 $sidebars['ct-footer-sidebar-3'] = array( 'nav_menu-2' );
 update_option( 'sidebars_widgets', $sidebars );
+
+// Product gallery: hover zoom (default) + tap-to-open lightbox, which is what works on phones.
+set_theme_mod( 'has_product_single_zoom', 'yes' );
+set_theme_mod( 'has_product_single_lightbox', 'yes' );
+
+// Product page: similar / "you may also like" on every device, 2 per row on phones.
+$all_devices = array( 'desktop' => true, 'tablet' => true, 'mobile' => true );
+set_theme_mod( 'related_products_visibility', $all_devices );
+set_theme_mod( 'upsell_products_visibility', $all_devices );
+set_theme_mod(
+	'woo_product_related_cards_columns',
+	array(
+		'desktop'   => 4,
+		'tablet'    => 3,
+		'mobile'    => 2,
+		'__changed' => array( 'tablet', 'mobile' ),
+	)
+);
 
 // Blocksy caches its generated CSS; drop it so the new palette/header are rendered.
 delete_transient( 'blocksy_dynamic_styles_descriptor' );
