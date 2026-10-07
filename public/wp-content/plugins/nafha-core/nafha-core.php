@@ -30,7 +30,8 @@ function nafha_core_boot() {
 	}
 
 	$modules = array(
-		// Modules are added here as they are built, e.g. 'class-product-fields.php'.
+		'class-qatar-areas.php',
+		'class-shipping.php',
 	);
 
 	foreach ( $modules as $module ) {
@@ -38,3 +39,11 @@ function nafha_core_boot() {
 	}
 }
 add_action( 'plugins_loaded', 'nafha_core_boot' );
+
+/**
+ * Source strings are English; Arabic ships in languages/nafha-core-ar.l10n.php.
+ */
+function nafha_core_load_textdomain() {
+	load_plugin_textdomain( 'nafha-core', false, dirname( plugin_basename( NAFHA_CORE_FILE ) ) . '/languages' );
+}
+add_action( 'init', 'nafha_core_load_textdomain' );

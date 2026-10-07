@@ -2,25 +2,27 @@
 /**
  * Nafha Child theme bootstrap.
  *
- * Presentation only (styles, fonts, template tweaks). Store features
- * (custom fields, WhatsApp ordering, quiz, …) live in the nafha-core plugin.
+ * Presentation only (styles, fonts, header/footer tweaks, mobile navigation).
+ * Store features (custom fields, WhatsApp ordering, quiz, …) live in the
+ * nafha-core plugin so they survive a theme change.
  *
  * @package Nafha_Child
  */
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'NAFHA_CHILD_VERSION', '0.1.0' );
+define( 'NAFHA_CHILD_VERSION', '0.2.0' );
+define( 'NAFHA_CHILD_DIR', get_stylesheet_directory() );
+define( 'NAFHA_CHILD_URL', get_stylesheet_directory_uri() );
+
+require_once NAFHA_CHILD_DIR . '/inc/assets.php';
+require_once NAFHA_CHILD_DIR . '/inc/announcement-bar.php';
+require_once NAFHA_CHILD_DIR . '/inc/mobile-nav.php';
 
 /**
- * Enqueue child stylesheet after Blocksy's own styles.
+ * Source strings are English; Arabic ships in languages/ar.l10n.php.
  */
-function nafha_child_enqueue_assets() {
-	wp_enqueue_style(
-		'nafha-child',
-		get_stylesheet_directory_uri() . '/assets/css/main.css',
-		array( 'ct-main-styles' ),
-		NAFHA_CHILD_VERSION
-	);
+function nafha_child_setup() {
+	load_child_theme_textdomain( 'nafha-child', NAFHA_CHILD_DIR . '/languages' );
 }
-add_action( 'wp_enqueue_scripts', 'nafha_child_enqueue_assets', 20 );
+add_action( 'after_setup_theme', 'nafha_child_setup' );

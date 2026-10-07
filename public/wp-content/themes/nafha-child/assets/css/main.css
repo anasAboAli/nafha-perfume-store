@@ -1,1 +1,296 @@
-/* Nafha Child — main stylesheet (RTL-first). Design tokens will be defined here. */
+/**
+ * Nafha Child — main stylesheet.
+ * RTL-first; uses logical properties (inline-start/end) so an LTR language
+ * can be added later without duplicating rules.
+ *
+ * Colours mirror Blocksy's palette (Customizer → Colors), see tools/setup/store-setup.php.
+ */
+
+/* --------------------------------------------------------------- fonts */
+
+@font-face {
+	font-family: "IBM Plex Sans Arabic";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("../fonts/plex-arabic-arabic-400.woff2") format("woff2");
+	unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+	font-family: "IBM Plex Sans Arabic";
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url("../fonts/plex-arabic-arabic-500.woff2") format("woff2");
+	unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+	font-family: "IBM Plex Sans Arabic";
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url("../fonts/plex-arabic-arabic-700.woff2") format("woff2");
+	unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+	font-family: "IBM Plex Sans Arabic";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("../fonts/plex-arabic-latin-400.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "IBM Plex Sans Arabic";
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url("../fonts/plex-arabic-latin-500.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "IBM Plex Sans Arabic";
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url("../fonts/plex-arabic-latin-700.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* -------------------------------------------------------------- tokens */
+
+:root {
+	--nafha-ink: #2b2130;
+	--nafha-ink-deep: #1e1722;
+	--nafha-gold: #b08a57;
+	--nafha-gold-soft: #c9a46c;
+	--nafha-gold-hover: #9a7647;
+	--nafha-text: #4f4754;
+	--nafha-muted: #8a8190;
+	--nafha-line: #e7ded2;
+	--nafha-sand: #f3ede4;
+	--nafha-ivory: #fbf8f4;
+	--nafha-white: #fff;
+
+	--nafha-radius: 10px;
+	--nafha-radius-lg: 16px;
+	--nafha-shadow: 0 6px 24px rgb(43 33 48 / 8%);
+	--nafha-bnav-height: 64px;
+
+	--nafha-font: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
+
+	/* Blocksy variables */
+	--theme-font-family: var(--nafha-font);
+	--theme-button-border-radius: var(--nafha-radius);
+	--theme-form-field-border-radius: var(--nafha-radius);
+}
+
+/* ---------------------------------------------------------------- base */
+
+body {
+	font-family: var(--nafha-font);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--nafha-font);
+	font-weight: 700;
+	letter-spacing: 0; /* Never letter-space Arabic: it breaks the joins. */
+}
+
+::selection {
+	background: var(--nafha-gold-soft);
+	color: var(--nafha-ink-deep);
+}
+
+:focus-visible {
+	outline: 2px solid var(--nafha-gold);
+	outline-offset: 2px;
+}
+
+/* Prices and phone numbers read left-to-right inside RTL text. */
+.woocommerce-Price-amount,
+[dir="ltr"] {
+	unicode-bidi: isolate;
+}
+
+/* -------------------------------------------------------- announcement */
+
+.nafha-announcement {
+	background: var(--nafha-ink);
+	color: var(--nafha-ivory);
+	text-align: center;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.4;
+	padding: 9px 16px;
+}
+
+.nafha-announcement a {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-color: var(--nafha-gold-soft);
+	text-underline-offset: 3px;
+}
+
+/* -------------------------------------------------------------- header */
+
+[data-header] .site-title {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 26px;
+	font-weight: 700;
+	line-height: 1;
+}
+
+[data-header] .site-title a {
+	color: var(--nafha-ink-deep);
+}
+
+[data-header] .site-title::before {
+	content: "";
+	inline-size: 22px;
+	block-size: 22px;
+	background: url("../img/mark.svg") center / contain no-repeat;
+	flex-shrink: 0;
+}
+
+[data-header] #header {
+	border-block-end: 1px solid var(--nafha-line);
+}
+
+/* ---------------------------------------------------------- bottom nav */
+
+.nafha-bnav {
+	display: none;
+}
+
+@media (max-width: 999.98px) {
+	body {
+		padding-block-end: calc(var(--nafha-bnav-height) + env(safe-area-inset-bottom));
+	}
+
+	.nafha-bnav {
+		position: fixed;
+		inset-inline: 0;
+		inset-block-end: 0;
+		z-index: 99;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		block-size: calc(var(--nafha-bnav-height) + env(safe-area-inset-bottom));
+		padding-block-end: env(safe-area-inset-bottom);
+		background: rgb(255 255 255 / 96%);
+		backdrop-filter: blur(8px);
+		border-block-start: 1px solid var(--nafha-line);
+		box-shadow: 0 -4px 20px rgb(43 33 48 / 6%);
+	}
+
+	/* Blocksy's back-to-top button would sit under the bar. */
+	.ct-back-to-top {
+		bottom: calc(var(--nafha-bnav-height) + 16px);
+	}
+}
+
+.nafha-bnav__item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 3px;
+	color: var(--nafha-muted);
+	font-size: 11px;
+	font-weight: 500;
+	text-decoration: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.nafha-bnav__item[aria-current="page"],
+.nafha-bnav__item:hover {
+	color: var(--nafha-ink);
+}
+
+.nafha-bnav__item[aria-current="page"] .nafha-icon {
+	stroke-width: 2;
+}
+
+.nafha-bnav__item--quiz .nafha-icon {
+	color: var(--nafha-gold);
+}
+
+.nafha-bnav__icon {
+	position: relative;
+	display: inline-flex;
+}
+
+.nafha-bnav__count {
+	position: absolute;
+	inset-block-start: -5px;
+	inset-inline-end: -9px;
+	min-inline-size: 17px;
+	block-size: 17px;
+	padding-inline: 4px;
+	border-radius: 9px;
+	background: var(--nafha-gold);
+	color: var(--nafha-white);
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 17px;
+	text-align: center;
+}
+
+.nafha-bnav__count[data-count="0"] {
+	display: none;
+}
+
+/* -------------------------------------------------------------- footer */
+
+#footer.ct-footer {
+	--theme-text-color: rgb(251 248 244 / 78%);
+	--theme-heading-color: var(--nafha-ivory);
+	--theme-link-initial-color: rgb(251 248 244 / 78%);
+	--theme-link-hover-color: var(--nafha-gold-soft);
+	background: var(--nafha-ink-deep);
+	color: var(--theme-text-color);
+}
+
+.ct-footer .widget-title,
+.ct-footer .wp-block-heading {
+	color: var(--nafha-ivory);
+	font-size: 16px;
+	margin-block-end: 14px;
+}
+
+.ct-footer a {
+	color: rgb(251 248 244 / 75%);
+}
+
+.ct-footer a:hover {
+	color: var(--nafha-gold-soft);
+}
+
+.ct-footer .widget_nav_menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ct-footer .widget_nav_menu li {
+	margin-block-end: 8px;
+}
+
+.ct-footer [data-row="bottom"] {
+	border-block-start: 1px solid rgb(251 248 244 / 10%);
+	font-size: 13px;
+}
+
+/* ------------------------------------------------------------- buttons */
+
+.button,
+button[type="submit"],
+.wp-element-button,
+.wp-block-button__link {
+	font-weight: 500;
+	min-block-size: 46px; /* Comfortable tap target on phones. */
+}
