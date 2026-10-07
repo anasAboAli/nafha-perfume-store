@@ -91,6 +91,9 @@ $options = array(
 	'woocommerce_email_base_color'         => '#2b2130',
 	'woocommerce_email_background_color'   => '#f6f1ea',
 	'woocommerce_coming_soon'              => 'no',
+	'woocommerce_default_catalog_orderby'  => 'popularity',
+	'woocommerce_catalog_columns'          => 4,
+	'woocommerce_catalog_rows'             => 3,
 	'nafha_whatsapp_number'                => '970598143863', // Client-provided store WhatsApp.
 	// Fixed Latin URL bases: otherwise WooCommerce uses the translated (Arabic, space-containing) defaults.
 	'woocommerce_brand_permalink'          => 'brand',
@@ -317,20 +320,22 @@ delete_transient( 'wc_attribute_taxonomies' );
 WP_CLI::log( 'Brands' );
 
 // WooCommerce's built-in Brands taxonomy (product_brand): gets its own archive pages for SEO.
+// slug => [display name, search aliases].
 $brands = array(
-	'dior'                     => 'Dior',
-	'chanel'                   => 'Chanel',
-	'tom-ford'                 => 'Tom Ford',
-	'creed'                    => 'Creed',
-	'yves-saint-laurent'       => 'Yves Saint Laurent',
-	'giorgio-armani'           => 'Giorgio Armani',
-	'maison-francis-kurkdjian' => 'Maison Francis Kurkdjian',
-	'parfums-de-marly'         => 'Parfums de Marly',
-	'amouage'                  => 'Amouage',
-	'lattafa'                  => 'Lattafa',
+	'dior'                     => array( 'Dior', 'ديور' ),
+	'chanel'                   => array( 'Chanel', 'شانيل، شنل' ),
+	'tom-ford'                 => array( 'Tom Ford', 'توم فورد' ),
+	'creed'                    => array( 'Creed', 'كريد' ),
+	'yves-saint-laurent'       => array( 'Yves Saint Laurent', 'ايف سان لوران، YSL' ),
+	'giorgio-armani'           => array( 'Giorgio Armani', 'جورجيو ارماني، ارماني' ),
+	'maison-francis-kurkdjian' => array( 'Maison Francis Kurkdjian', 'ميزون فرانسيس كركدجيان، MFK' ),
+	'parfums-de-marly'         => array( 'Parfums de Marly', 'بارفان دي مارلي، مارلي، PDM' ),
+	'amouage'                  => array( 'Amouage', 'امواج' ),
+	'lattafa'                  => array( 'Lattafa', 'لطافة' ),
 );
-foreach ( $brands as $slug => $name ) {
-	nafha_setup_term( 'product_brand', $slug, $name );
+foreach ( $brands as $slug => list( $name, $aliases ) ) {
+	$brand_id = nafha_setup_term( 'product_brand', $slug, $name );
+	update_term_meta( $brand_id, 'nafha_aliases', $aliases ); // Arabic spellings for search (Nafha_Search).
 }
 nafha_setup_log( count( $brands ) . ' brands' );
 
@@ -477,37 +482,49 @@ set_theme_mod(
 	)
 );
 
-$header = new Blocksy_Header_Builder();
+$header         = new Blocksy_Header_Builder();
+$header_section = $header->get_structure_for(
+	array(
+		'id'    => 'type-1',
+		'items' => array(
+			'desktop' => array(
+				'middle-row' => array(
+					'start'  => array( 'logo' ),
+					'middle' => array( 'menu' ),
+					'end'    => array( 'search', 'cart' ),
+				),
+			),
+			'mobile'  => array(
+				'middle-row' => array(
+					'start'  => array( 'trigger' ),
+					'middle' => array( 'logo' ),
+					'end'    => array( 'search', 'cart' ),
+				),
+				'offcanvas'  => array(
+					'start' => array( 'mobile-menu' ),
+				),
+			),
+		),
+	)
+);
+// Header search: products only, live results with thumbnail + price.
+$header_section['items'] = array(
+	array(
+		'id'     => 'search',
+		'values' => array(
+			'search_through'            => array( 'post' => false, 'page' => false, 'product' => true ),
+			'enable_live_results'       => 'yes',
+			'searchHeaderImages'        => 'yes',
+			'searchHeaderProductPrice'  => 'yes',
+			'header_search_placeholder' => 'ابحث عن عطر، ماركة أو نوتة…',
+		),
+	),
+);
 set_theme_mod(
 	'header_placements',
 	array(
 		'current_section' => 'type-1',
-		'sections'        => array(
-			$header->get_structure_for(
-				array(
-					'id'    => 'type-1',
-					'items' => array(
-						'desktop' => array(
-							'middle-row' => array(
-								'start'  => array( 'logo' ),
-								'middle' => array( 'menu' ),
-								'end'    => array( 'search', 'cart' ),
-							),
-						),
-						'mobile'  => array(
-							'middle-row' => array(
-								'start'  => array( 'trigger' ),
-								'middle' => array( 'logo' ),
-								'end'    => array( 'search', 'cart' ),
-							),
-							'offcanvas'  => array(
-								'start' => array( 'mobile-menu' ),
-							),
-						),
-					),
-				)
-			),
-		),
+		'sections'        => array( $header_section ),
 	)
 );
 
@@ -575,6 +592,39 @@ set_theme_mod(
 		'tablet'    => 3,
 		'mobile'    => 2,
 		'__changed' => array( 'tablet', 'mobile' ),
+	)
+);
+
+// Shop grid: 4 / 3 / 2 columns (phones need 2 to browse comfortably).
+set_theme_mod(
+	'blocksy_woo_columns',
+	array(
+		'desktop'   => 4,
+		'tablet'    => 3,
+		'mobile'    => 2,
+		'__changed' => array( 'tablet', 'mobile' ),
+	)
+);
+
+// Product card: brand (meta layer pointed at product_brand) above the title; no category line.
+set_theme_mod(
+	'woo_card_layout',
+	array(
+		array( 'id' => 'product_image', 'enabled' => true ),
+		array(
+			'id'       => 'product_meta',
+			'enabled'  => true,
+			'taxonomy' => 'product_brand',
+			'style'    => 'simple',
+			'__id'     => 'nafha-brand',
+		),
+		array( 'id' => 'product_title', 'enabled' => true ),
+		array( 'id' => 'product_rating', 'enabled' => true ),
+		array( 'id' => 'product_price', 'enabled' => true ),
+		array( 'id' => 'product_desc', 'enabled' => false ),
+		array( 'id' => 'product_add_to_cart', 'enabled' => true ),
+		array( 'id' => 'product_add_to_cart_and_price', 'enabled' => true ),
+		array( 'id' => 'product_stock', 'enabled' => false ),
 	)
 );
 

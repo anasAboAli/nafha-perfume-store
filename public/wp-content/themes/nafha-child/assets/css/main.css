@@ -294,3 +294,29 @@ button[type="submit"],
 	font-weight: 500;
 	min-block-size: 46px; /* Comfortable tap target on phones. */
 }
+
+/* ------------------------------------------------------ product cards */
+
+/* Brand line above the title (Blocksy card "meta" layer set to product_brand). */
+[data-products] .entry-meta[data-id="nafha-brand"] {
+	color: var(--nafha-gold);
+	letter-spacing: .06em;
+}
+
+[data-products] .entry-meta[data-id="nafha-brand"] a {
+	color: inherit;
+}
+
+/* --------------------------------------------------------- page hero */
+
+/* Blocksy's archive hero is tall; on phones it pushes products below the fold. */
+@media (max-width: 689.98px) {
+	.hero-section[data-type="type-2"] > [class*="ct-container"] {
+		min-height: 0; /* Blocksy sets a fixed 250px hero height. */
+		padding-block: 28px;
+	}
+
+	.hero-section .page-title {
+		font-size: 26px;
+	}
+}

@@ -15,6 +15,7 @@ final class Nafha_Product_Page {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue' ) );
 		add_filter( 'woocommerce_get_availability', array( __CLASS__, 'availability' ), 10, 2 );
 		add_filter( 'woocommerce_variable_price_html', array( __CLASS__, 'from_price' ), 10, 2 );
+		add_filter( 'woocommerce_product_add_to_cart_text', array( __CLASS__, 'card_button_text' ), 10, 2 );
 
 		add_filter( 'woocommerce_related_products', array( __CLASS__, 'related_by_family' ), 10, 3 );
 		// Keep our relevance order: WooCommerce shuffles IDs and then sorts the products randomly again.
@@ -63,6 +64,17 @@ final class Nafha_Product_Page {
 		}
 		/* translators: %s: lowest variation price. */
 		return sprintf( __( 'From %s', 'nafha-core' ), wc_price( $min ) );
+	}
+
+	/**
+	 * Product cards: "Choose size" says what the click is for (WooCommerce: "Select options").
+	 *
+	 * @param string     $text    Button text.
+	 * @param WC_Product $product Product.
+	 * @return string
+	 */
+	public static function card_button_text( $text, $product ) {
+		return $product->is_type( 'variable' ) && $product->is_purchasable() ? __( 'Choose size', 'nafha-core' ) : $text;
 	}
 
 	/* ------------------------------------------------------------ stock */

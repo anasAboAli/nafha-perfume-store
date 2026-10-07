@@ -70,8 +70,32 @@ return array(
 		// Plural entry: "singular\0plural" => six Arabic forms joined by \0.
 		"Limited quantity — only %d left\0Limited quantity — only %d left" => "كمية محدودة — بقي %d فقط\0كمية محدودة — بقيت قطعة واحدة فقط\0كمية محدودة — بقيت قطعتان فقط\0كمية محدودة — بقي %d قطع فقط\0كمية محدودة — بقي %d قطعة فقط\0كمية محدودة — بقي %d قطعة فقط",
 		'From %s'               => 'من %s',
+		'Choose size'           => 'اختر الحجم',
 		'Similar fragrances'    => 'عطور مشابهة',
 		'You may also like'     => 'قد يعجبك أيضًا',
+
+		// Shop filters & sorting.
+		'Filter'                => 'فلترة',
+		'Gender'                => 'الجنس',
+		'Brand'                 => 'العلامة التجارية',
+		'Concentration'         => 'التركيز',
+		'Any price'             => 'كل الأسعار',
+		'Under %s'              => 'أقل من %s',
+		'Over %s'               => 'أكثر من %s',
+		'%1$s to %2$s'          => 'من %1$s إلى %2$s',
+		'Active filters'        => 'الفلاتر المختارة',
+		'Remove filter'         => 'إزالة الفلتر',
+		'Clear all'             => 'مسح الكل',
+		'Close'                 => 'إغلاق',
+		"Show %s product\0Show %s products" => "لا توجد منتجات\0عرض منتج واحد\0عرض منتجين\0عرض %s منتجات\0عرض %s منتجًا\0عرض %s منتج",
+		'Best selling'          => 'الأكثر مبيعًا',
+		'Newest'                => 'الأحدث',
+		'Price: low to high'    => 'السعر: من الأقل للأعلى',
+		'Price: high to low'    => 'السعر: من الأعلى للأقل',
+
+		// Search.
+		'Search aliases'        => 'أسماء بديلة للبحث',
+		'Other spellings customers may type, e.g. the Arabic name. Comma separated.' => 'طرق كتابة أخرى قد يستخدمها العملاء، مثل الاسم بالعربية. افصل بينها بفاصلة.',
 
 		// Review photos.
 		'Add a photo (optional)' => 'أضف صورة (اختياري)',

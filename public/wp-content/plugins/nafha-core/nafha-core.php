@@ -38,6 +38,8 @@ function nafha_core_boot() {
 		'class-whatsapp.php',
 		'class-product-page.php',
 		'class-review-photos.php',
+		'class-shop-filters.php',
+		'class-search.php',
 	);
 
 	foreach ( $modules as $module ) {

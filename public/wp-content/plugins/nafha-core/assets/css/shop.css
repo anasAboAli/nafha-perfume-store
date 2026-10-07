@@ -1,0 +1,297 @@
+/**
+ * Shop filters (nafha-core). Child-theme tokens with fallbacks.
+ */
+
+:root {
+	--nf-ink: var(--nafha-ink, #2b2130);
+	--nf-gold: var(--nafha-gold, #b08a57);
+	--nf-line: var(--nafha-line, #e7ded2);
+	--nf-sand: var(--nafha-sand, #f3ede4);
+	--nf-muted: var(--nafha-muted, #8a8190);
+	--nf-radius: var(--nafha-radius, 10px);
+}
+
+/* ------------------------------------------------------------ toolbar */
+
+.woo-listing-top {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 14px;
+}
+
+.woo-listing-top .woocommerce-ordering {
+	margin-inline-start: auto;
+}
+
+.nafha-filter-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	min-block-size: 42px;
+	padding-inline: 16px;
+	border: 1px solid var(--nf-line);
+	border-radius: 999px;
+	background: #fff;
+	color: var(--nf-ink);
+	font: inherit;
+	font-weight: 500;
+	cursor: pointer;
+	transition: border-color .15s;
+}
+
+.nafha-filter-toggle:hover {
+	border-color: var(--nf-ink);
+}
+
+.nafha-filter-toggle__count {
+	min-inline-size: 20px;
+	block-size: 20px;
+	padding-inline: 5px;
+	border-radius: 10px;
+	background: var(--nf-gold);
+	color: #fff;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 20px;
+	text-align: center;
+}
+
+/* ----------------------------------------------------- active filters */
+
+.nafha-chips-bar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	inline-size: 100%;
+	margin-block: 4px 18px;
+}
+
+.nafha-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 5px 12px;
+	border-radius: 999px;
+	background: var(--nf-sand);
+	color: var(--nf-ink);
+	font-size: 13px;
+	text-decoration: none;
+}
+
+.nafha-chip:hover {
+	background: var(--nf-line);
+	color: var(--nf-ink);
+}
+
+.nafha-chip--clear {
+	background: transparent;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+/* ------------------------------------------------------------ results */
+
+main#main .ct-container > section {
+	transition: opacity .2s;
+}
+
+main#main .ct-container > section.nafha-loading {
+	opacity: .45;
+	pointer-events: none;
+}
+
+/* ------------------------------------------------------------- drawer */
+
+.nafha-drawer-open {
+	overflow: hidden;
+}
+
+.nafha-drawer {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+}
+
+.nafha-drawer[hidden] {
+	display: none;
+}
+
+.nafha-drawer__overlay {
+	position: absolute;
+	inset: 0;
+	background: rgb(30 23 34 / 45%);
+	opacity: 0;
+	transition: opacity .25s;
+}
+
+.nafha-drawer__panel {
+	position: absolute;
+	inset-block: 0;
+	inset-inline-start: 0;
+	display: flex;
+	flex-direction: column;
+	inline-size: min(380px, 88vw);
+	margin: 0;
+	background: #fff;
+	box-shadow: 0 0 40px rgb(30 23 34 / 20%);
+	transform: translateX(100%); /* RTL: slides in from the right (inline-start). */
+	transition: transform .25s ease;
+}
+
+[dir="ltr"] .nafha-drawer__panel {
+	transform: translateX(-100%);
+}
+
+.nafha-drawer.is-open .nafha-drawer__overlay {
+	opacity: 1;
+}
+
+.nafha-drawer.is-open .nafha-drawer__panel {
+	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.nafha-drawer__panel,
+	.nafha-drawer__overlay {
+		transition: none;
+	}
+}
+
+.nafha-drawer__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 18px 20px;
+	border-block-end: 1px solid var(--nf-line);
+}
+
+.nafha-drawer__header h2 {
+	margin: 0;
+	font-size: 18px;
+}
+
+.nafha-drawer__close {
+	inline-size: 40px;
+	block-size: 40px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: var(--nf-sand);
+	color: var(--nf-ink);
+	font-size: 24px;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.nafha-drawer__body {
+	flex: 1;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding: 4px 20px;
+	transition: opacity .2s;
+}
+
+.nafha-drawer.nafha-loading .nafha-drawer__body {
+	opacity: .6;
+}
+
+.nafha-drawer__footer {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 14px 20px calc(14px + env(safe-area-inset-bottom));
+	border-block-start: 1px solid var(--nf-line);
+}
+
+.nafha-drawer__clear {
+	color: var(--nf-muted);
+	font-size: 14px;
+	white-space: nowrap;
+}
+
+.nafha-drawer__apply.button {
+	flex: 1;
+	min-block-size: 48px;
+}
+
+/* ------------------------------------------------------------- facets */
+
+.nafha-facet {
+	border-block-end: 1px solid var(--nf-line);
+}
+
+.nafha-facet summary {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-block: 16px;
+	color: var(--nf-ink);
+	font-weight: 700;
+	list-style: none;
+	cursor: pointer;
+}
+
+.nafha-facet summary::-webkit-details-marker {
+	display: none;
+}
+
+.nafha-facet summary::after {
+	content: "";
+	inline-size: 8px;
+	block-size: 8px;
+	/* Physical sides on purpose: the chevron must point down in both RTL and LTR. */
+	border-right: 1.5px solid currentColor;
+	border-bottom: 1.5px solid currentColor;
+	transform: rotate(45deg);
+	transition: transform .2s;
+}
+
+.nafha-facet[open] summary::after {
+	transform: rotate(-135deg);
+}
+
+.nafha-facet ul {
+	margin: 0 0 14px;
+	padding: 0;
+	list-style: none;
+}
+
+.nafha-facet li {
+	margin: 0;
+}
+
+.nafha-facet label {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-block-size: 40px; /* Comfortable tap target. */
+	cursor: pointer;
+}
+
+.nafha-facet label.is-empty {
+	opacity: .4;
+	cursor: not-allowed;
+}
+
+.nafha-facet input {
+	inline-size: 18px;
+	block-size: 18px;
+	margin: 0;
+	accent-color: var(--nf-ink);
+	flex-shrink: 0;
+}
+
+.nafha-facet__label {
+	flex: 1;
+}
+
+.nafha-facet__count {
+	min-inline-size: 26px;
+	padding: 1px 8px;
+	border-radius: 999px;
+	background: var(--nf-sand);
+	color: var(--nf-muted);
+	font-size: 12px;
+	text-align: center;
+}

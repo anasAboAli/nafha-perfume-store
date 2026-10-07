@@ -25,6 +25,7 @@ Start services: run XAMPP Control Panel → start **Apache** and **MySQL**.
 | Apply store configuration | `tools/wp.sh eval-file tools/setup/store-setup.php` |
 | Regenerate demo images | `(cd tools && npm install && npm run images)` |
 | Import / update demo products | `tools/wp.sh eval-file tools/setup/demo-products.php` |
+| Rebuild the product search index | `tools/wp.sh nafha reindex` |
 | Check Arabic translations are complete | `/c/xampp/php/php.exe tools/check-translations.php` |
 
 Demo products are flagged with `_nafha_demo` — see the header of `tools/setup/demo-products.php` for the one-line removal before launch.
@@ -40,3 +41,5 @@ Demo products are flagged with `_nafha_demo` — see the header of `tools/setup/
 | `class-whatsapp.php` | "Order via WhatsApp" button with product/size/qty/price message |
 | `class-product-page.php` | Stock indicator, "From $X" prices, similar / you-may-also-like logic |
 | `class-review-photos.php` | Optional photo on reviews (validated, held for moderation) |
+| `class-shop-filters.php` | Off-canvas filters with live counts, active-filter chips, sorting options |
+| `class-search.php` | Normalised product search index (Arabic variants, English names, brands + aliases, notes); `wp nafha reindex` |
