@@ -1,0 +1,13 @@
+# Track only our own code + docs; WordPress core, third-party plugins/themes and uploads are reproducible.
+/public/*
+!/public/wp-content/
+/public/wp-content/*
+!/public/wp-content/themes/
+/public/wp-content/themes/*
+!/public/wp-content/themes/nafha-child/
+!/public/wp-content/plugins/
+/public/wp-content/plugins/*
+!/public/wp-content/plugins/nafha-core/
+/tools/wp-cli.phar
+.local-credentials.txt
+*.log
