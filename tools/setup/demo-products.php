@@ -179,7 +179,12 @@ foreach ( $nafha_products as $i => $data ) {
 	}
 
 	// Plausible sales so "best sellers" ordering has something to sort by.
-	update_post_meta( $product_id, 'total_sales', ! empty( $data['featured'] ) ? 40 + $i * 3 : 5 + $i );
+	// Gift sets get modest numbers so the perfumes lead "best sellers".
+	$sales = ! empty( $data['giftset'] ) ? 18 - $i : ( ! empty( $data['featured'] ) ? 40 + $i * 3 : 5 + $i );
+	// Through the product object so WooCommerce's lookup table (used for sorting) stays in sync.
+	$product = wc_get_product( $product_id );
+	$product->set_total_sales( $sales );
+	$product->save();
 
 	// A few demo reviews on featured products.
 	if ( ! empty( $data['featured'] ) ) {
@@ -206,5 +211,7 @@ foreach ( $nafha_products as $i => $data ) {
 	WP_CLI::log( sprintf( '  %s %s (#%d)', $existing ? 'updated' : 'created', $data['name_en'], $product_id ) );
 }
 
+// The lookup table (used for "best selling" sorting) is updated lazily; rebuild the column now.
+wc_update_product_lookup_tables_column( 'total_sales' );
 wc_delete_product_transients();
 WP_CLI::success( count( $nafha_products ) . ' demo products ready.' );

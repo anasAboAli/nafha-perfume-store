@@ -191,6 +191,12 @@ return array(
 		"Add %1\$d more sample and get %2\$d%% off your samples\0Add %1\$d more samples and get %2\$d%% off your samples" => "أضف %1\$d عينات واحصل على خصم %2\$d%% على العينات\0أضف عينة واحدة فقط واحصل على خصم %2\$d%% على العينات\0أضف عينتين واحصل على خصم %2\$d%% على العينات\0أضف %1\$d عينات واحصل على خصم %2\$d%% على العينات\0أضف %1\$d عينة واحصل على خصم %2\$d%% على العينات\0أضف %1\$d عينة واحصل على خصم %2\$d%% على العينات",
 		'%d%% sample discount applied' => 'تم تطبيق خصم %d%% على العينات',
 
+		// Import / export.
+		'Brands'                => 'العلامات التجارية',
+
+		// Reviews showcase.
+		'Rated %d out of 5'     => 'التقييم %d من 5',
+
 		// Review photos.
 		'Add a photo (optional)' => 'أضف صورة (اختياري)',
 		'JPG, PNG or WebP, up to 3 MB. Reviews with photos appear after approval.' => 'JPG أو PNG أو WebP بحجم أقصى 3 ميجابايت. تظهر المراجعات المرفقة بصور بعد الموافقة عليها.',

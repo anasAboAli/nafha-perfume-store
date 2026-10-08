@@ -17,7 +17,7 @@ Start services: run XAMPP Control Panel → start **Apache** and **MySQL**.
 - `public/` — WordPress install (core is not committed)
 - `public/wp-content/themes/nafha-child/` — child theme of Blocksy (presentation only)
 - `public/wp-content/plugins/nafha-core/` — store features (custom fields, WhatsApp order, quiz, side cart, tracking…)
-- `docs/` — requirements, plan, plugin list
+- `docs/` — requirements, plan, plugin list, [bulk import guide](docs/IMPORT-GUIDE.md) + sample CSV
 
 ## Common commands (Git Bash, from the project root)
 | Task | Command |
@@ -25,6 +25,7 @@ Start services: run XAMPP Control Panel → start **Apache** and **MySQL**.
 | Apply store configuration | `tools/wp.sh eval-file tools/setup/store-setup.php` |
 | Regenerate demo images | `(cd tools && npm install && npm run images)` |
 | Import / update demo products | `tools/wp.sh eval-file tools/setup/demo-products.php` |
+| Write home page + static pages (OVERWRITES page content — run once) | `(cd tools && node images/hero.js)` then `tools/wp.sh eval-file tools/setup/content.php` |
 | Rebuild the product search index | `tools/wp.sh nafha reindex` |
 | Check Arabic translations are complete | `/c/xampp/php/php.exe tools/check-translations.php` |
 
@@ -49,4 +50,6 @@ Demo products are flagged with `_nafha_demo` — see the header of `tools/setup/
 | `class-whatsapp-gateway.php` | "Confirm via WhatsApp" checkout method: order saved on-hold, then WhatsApp opens with the full summary |
 | `class-quiz.php` | Fragrance quiz `[nafha_quiz]`: 6 questions, server-side scoring, match % on product cards |
 | `class-offers.php` | Discovery box builder `[nafha_discovery_box]` (discounted box of 3/5 decants) and sample quantity discount |
+| `class-reviews-showcase.php` | `[nafha_reviews]` — latest real 4–5★ reviews for the home page |
+| `class-import-export.php` | "Brands" column for the product CSV importer/exporter |
 | `class-search.php` | Normalised product search index (Arabic variants, English names, brands + aliases, notes); `wp nafha reindex` |

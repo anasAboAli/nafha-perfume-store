@@ -45,6 +45,8 @@ function nafha_core_boot() {
 		'class-whatsapp-gateway.php',
 		'class-quiz.php',
 		'class-offers.php',
+		'class-reviews-showcase.php',
+		'class-import-export.php',
 	);
 
 	foreach ( $modules as $module ) {
