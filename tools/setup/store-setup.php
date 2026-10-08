@@ -75,7 +75,7 @@ $options = array(
 	'woocommerce_calc_taxes'               => 'no',
 	'woocommerce_weight_unit'              => 'g',
 	'woocommerce_enable_guest_checkout'    => 'yes',
-	'woocommerce_enable_checkout_login_reminder' => 'yes',
+	'woocommerce_enable_checkout_login_reminder' => 'no', // Guests are the norm; the notice only adds noise.
 	'woocommerce_enable_signup_and_login_from_checkout' => 'yes',
 	'woocommerce_enable_coupons'           => 'yes',
 	'woocommerce_manage_stock'             => 'yes',
@@ -90,6 +90,13 @@ $options = array(
 	'woocommerce_email_from_name'          => 'نفحة',
 	'woocommerce_email_base_color'         => '#2b2130',
 	'woocommerce_email_background_color'   => '#f6f1ea',
+	'woocommerce_email_body_background_color' => '#ffffff',
+	'woocommerce_email_text_color'         => '#2b2130',
+	'woocommerce_email_footer_text'        => 'نفحة — عطور أصلية بالتقسيم في قطر · واتساب: ‎+970 59 814 3863',
+	// Consent shown under "Place order" (replaces the terms checkbox, see Nafha_Checkout).
+	'woocommerce_checkout_privacy_policy_text' => 'بإتمام الطلب فإنك توافق على [terms] و[privacy_policy].',
+	// Checkout order: cash on delivery first (local habit), then WhatsApp, then bank transfer.
+	'woocommerce_gateway_order'            => array( 'cod' => 0, 'nafha_whatsapp' => 1, 'bacs' => 2 ),
 	'woocommerce_coming_soon'              => 'no',
 	'woocommerce_default_catalog_orderby'  => 'popularity',
 	'woocommerce_catalog_columns'          => 4,
@@ -203,6 +210,19 @@ foreach ( array( 'cheque', 'paypal' ) as $gateway ) {
 	update_option( 'woocommerce_' . $gateway . '_settings', $settings );
 }
 nafha_setup_log( 'COD + bank transfer enabled' );
+
+/* ------------------------------------------------------------------ e-mails */
+
+WP_CLI::log( 'E-mails' );
+
+// Customers reach the store on WhatsApp, not by e-mail: say so at the end of every order e-mail.
+$email_closing = 'شكرًا لاختيارك نفحة! لأي استفسار عن طلبك تواصل معنا عبر واتساب: ‎+970 59 814 3863';
+foreach ( array( 'customer_on_hold_order', 'customer_processing_order', 'customer_completed_order', 'customer_invoice', 'customer_note' ) as $email_id ) {
+	$settings                       = get_option( 'woocommerce_' . $email_id . '_settings', array() );
+	$settings['additional_content'] = $email_closing;
+	update_option( 'woocommerce_' . $email_id . '_settings', $settings );
+}
+nafha_setup_log( 'customer e-mail closing text set' );
 
 /* --------------------------------------------------------- product taxonomy */
 
@@ -354,6 +374,19 @@ foreach ( $wc_pages as $option => $title ) {
 	$id = (int) get_option( $option );
 	if ( $id ) {
 		wp_update_post( array( 'ID' => $id, 'post_title' => $title ) );
+	}
+}
+
+// Classic cart/checkout (shortcodes) instead of the block versions: lighter JS, and our
+// field, side-cart and WhatsApp customisations use the classic hooks.
+$classic = array(
+	'woocommerce_cart_page_id'     => '[woocommerce_cart]',
+	'woocommerce_checkout_page_id' => '[woocommerce_checkout]',
+);
+foreach ( $classic as $option => $shortcode ) {
+	$id = (int) get_option( $option );
+	if ( $id ) {
+		wp_update_post( array( 'ID' => $id, 'post_content' => "<!-- wp:shortcode -->\n{$shortcode}\n<!-- /wp:shortcode -->" ) );
 	}
 }
 $refund_page = get_page_by_path( 'refund_returns' );
@@ -508,6 +541,7 @@ $header_section = $header->get_structure_for(
 	)
 );
 // Header search: products only, live results with thumbnail + price.
+// Header cart: no Blocksy dropdown — the icon opens nafha-core's side cart instead.
 $header_section['items'] = array(
 	array(
 		'id'     => 'search',
@@ -517,6 +551,12 @@ $header_section['items'] = array(
 			'searchHeaderImages'        => 'yes',
 			'searchHeaderProductPrice'  => 'yes',
 			'header_search_placeholder' => 'ابحث عن عطر، ماركة أو نوتة…',
+		),
+	),
+	array(
+		'id'     => 'cart',
+		'values' => array(
+			'has_cart_dropdown' => 'no',
 		),
 	),
 );

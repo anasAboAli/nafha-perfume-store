@@ -1,0 +1,347 @@
+/**
+ * Site-wide front-end styles (nafha-core): drawers (side cart, filters),
+ * free-shipping progress, WhatsApp buttons, checkout tweaks.
+ * Uses the child theme's --nafha-* tokens with fallbacks.
+ */
+
+:root {
+	--nf-ink: var(--nafha-ink, #2b2130);
+	--nf-gold: var(--nafha-gold, #b08a57);
+	--nf-line: var(--nafha-line, #e7ded2);
+	--nf-sand: var(--nafha-sand, #f3ede4);
+	--nf-muted: var(--nafha-muted, #8a8190);
+	--nf-radius: var(--nafha-radius, 10px);
+	--nf-wa: #1fa855;
+	--nf-wa-dark: #188a46;
+}
+
+/* ------------------------------------------------------------- drawer */
+
+.nafha-drawer-open {
+	overflow: hidden;
+}
+
+.nafha-drawer {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+}
+
+.nafha-drawer[hidden] {
+	display: none;
+}
+
+.nafha-drawer__overlay {
+	position: absolute;
+	inset: 0;
+	background: rgb(30 23 34 / 45%);
+	opacity: 0;
+	transition: opacity .25s;
+}
+
+.nafha-drawer__panel {
+	position: absolute;
+	inset-block: 0;
+	inset-inline-start: 0;
+	display: flex;
+	flex-direction: column;
+	inline-size: min(380px, 88vw);
+	margin: 0;
+	background: #fff;
+	box-shadow: 0 0 40px rgb(30 23 34 / 20%);
+	transform: translateX(100%); /* RTL: slides in from the right (inline-start). */
+	transition: transform .25s ease;
+}
+
+[dir="ltr"] .nafha-drawer__panel {
+	transform: translateX(-100%);
+}
+
+.nafha-drawer.is-open .nafha-drawer__overlay {
+	opacity: 1;
+}
+
+.nafha-drawer.is-open .nafha-drawer__panel {
+	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.nafha-drawer__panel,
+	.nafha-drawer__overlay {
+		transition: none;
+	}
+}
+
+.nafha-drawer__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 18px 20px;
+	border-block-end: 1px solid var(--nf-line);
+}
+
+.nafha-drawer__header h2 {
+	margin: 0;
+	font-size: 18px;
+}
+
+.nafha-drawer__close {
+	inline-size: 40px;
+	block-size: 40px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: var(--nf-sand);
+	color: var(--nf-ink);
+	font-size: 24px;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.nafha-drawer__body {
+	flex: 1;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding: 4px 20px;
+	transition: opacity .2s;
+}
+
+.nafha-drawer.nafha-loading .nafha-drawer__body {
+	opacity: .6;
+}
+
+.nafha-drawer__footer {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 14px 20px calc(14px + env(safe-area-inset-bottom));
+	border-block-start: 1px solid var(--nf-line);
+}
+
+.nafha-drawer__clear {
+	color: var(--nf-muted);
+	font-size: 14px;
+	white-space: nowrap;
+}
+
+.nafha-drawer__apply.button {
+	flex: 1;
+	min-block-size: 48px;
+}
+
+/* ---------------------------------------------------------- side cart */
+
+.nafha-cart-drawer .nafha-drawer__body {
+	display: flex;
+	flex-direction: column;
+	padding-block: 12px 0;
+}
+
+.nafha-cart-drawer .widget_shopping_cart_content {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+.nafha-cart-count {
+	display: inline-block;
+	min-inline-size: 22px;
+	padding-inline: 6px;
+	border-radius: 11px;
+	background: var(--nf-sand);
+	color: var(--nf-muted);
+	font-size: 13px;
+	line-height: 22px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart {
+	flex: 1;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart-item {
+	position: relative;
+	display: grid;
+	grid-template-columns: 64px 1fr;
+	gap: 4px 12px;
+	padding-block: 12px;
+	padding-inline-end: 28px;
+	border-block-end: 1px solid var(--nf-line);
+	font-size: 14px;
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart-item img {
+	grid-row: span 3;
+	inline-size: 64px;
+	block-size: 64px;
+	margin: 0;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart-item a:not(.remove) {
+	display: contents;
+	color: var(--nf-ink);
+	font-weight: 500;
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart-item .remove {
+	position: absolute;
+	inset-block-start: 12px;
+	inset-inline-end: 0;
+	color: var(--nf-muted);
+	font-size: 20px;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart-item .variation {
+	margin: 0;
+	color: var(--nf-muted);
+	font-size: 12px;
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart-item .variation dt,
+.nafha-cart-drawer .woocommerce-mini-cart-item .variation dd {
+	display: inline;
+	margin: 0;
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart-item .quantity {
+	color: var(--nf-muted);
+	font-size: 13px;
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart__total {
+	display: flex;
+	justify-content: space-between;
+	margin: 0;
+	padding-block: 16px 10px;
+	font-size: 16px;
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart__buttons {
+	display: grid;
+	gap: 8px;
+	margin: 0;
+	padding-block-end: calc(16px + env(safe-area-inset-bottom));
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart__buttons .button {
+	inline-size: 100%;
+	margin: 0;
+	text-align: center;
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart__buttons .button:not(.checkout):not(.nafha-wa-btn) {
+	border: 1px solid var(--nf-ink);
+	background: transparent;
+	color: var(--nf-ink);
+}
+
+.nafha-cart-drawer .woocommerce-mini-cart__empty-message {
+	margin-block: 40px;
+	color: var(--nf-muted);
+	text-align: center;
+}
+
+/* --------------------------------------------- free-shipping progress */
+
+.nafha-ship-progress {
+	margin-block-end: 16px;
+	padding: 12px 14px;
+	border-radius: var(--nf-radius);
+	background: var(--nf-sand);
+	font-size: 14px;
+}
+
+.nafha-ship-progress p {
+	margin: 0 0 8px;
+}
+
+.nafha-ship-progress__track {
+	overflow: hidden;
+	block-size: 6px;
+	border-radius: 3px;
+	background: #fff;
+}
+
+.nafha-ship-progress__track span {
+	display: block;
+	block-size: 100%;
+	border-radius: inherit;
+	background: var(--nf-gold);
+	transition: inline-size .3s ease;
+}
+
+.nafha-ship-progress.is-done .nafha-ship-progress__track span {
+	background: #2f7d4f;
+}
+
+/* -------------------------------------------------- WhatsApp buttons */
+
+.button.nafha-wa-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	border-color: var(--nf-wa);
+	background: var(--nf-wa);
+	color: #fff;
+}
+
+.button.nafha-wa-btn:hover,
+.button.nafha-wa-btn:focus-visible {
+	border-color: var(--nf-wa-dark);
+	background: var(--nf-wa-dark);
+	color: #fff;
+}
+
+.wc-proceed-to-checkout .nafha-wa-btn--cart {
+	inline-size: 100%;
+	margin-block-start: 10px;
+}
+
+.nafha-wa-confirm {
+	margin-block: 0 32px;
+	padding: 24px;
+	border: 1px solid #bfe5cc;
+	border-radius: var(--nafha-radius-lg, 16px);
+	background: #f0faf3;
+	text-align: center;
+}
+
+.nafha-wa-confirm h2 {
+	margin-block: 0 8px;
+	font-size: 20px;
+}
+
+.nafha-wa-confirm .button {
+	min-inline-size: 260px;
+	min-block-size: 50px;
+}
+
+/* ---------------------------------------------------------- checkout */
+
+.woocommerce-checkout .nafha-hidden-field {
+	display: none !important; /* Single shipping country (Qatar). */
+}
+
+.woocommerce-checkout #billing_phone {
+	text-align: start;
+}
+
+/* Phone numbers keep the + in front inside RTL text (order details, My account). */
+a[href^="tel:"] {
+	direction: ltr;
+	unicode-bidi: isolate;
+}
+
+[dir="rtl"] .woocommerce-customer-details--phone {
+	direction: ltr;
+	text-align: right;
+}

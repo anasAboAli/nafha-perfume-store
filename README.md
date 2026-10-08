@@ -28,6 +28,8 @@ Start services: run XAMPP Control Panel → start **Apache** and **MySQL**.
 | Rebuild the product search index | `tools/wp.sh nafha reindex` |
 | Check Arabic translations are complete | `/c/xampp/php/php.exe tools/check-translations.php` |
 
+Local e-mails are not sent: `mu-plugins/nafha-local-mail.php` saves them to `wp-content/uploads/nafha-mail/` (only when `WP_ENVIRONMENT_TYPE` is `local`).
+
 Demo products are flagged with `_nafha_demo` — see the header of `tools/setup/demo-products.php` for the one-line removal before launch.
 
 ## Custom features (nafha-core)
@@ -42,4 +44,7 @@ Demo products are flagged with `_nafha_demo` — see the header of `tools/setup/
 | `class-product-page.php` | Stock indicator, "From $X" prices, similar / you-may-also-like logic |
 | `class-review-photos.php` | Optional photo on reviews (validated, held for moderation) |
 | `class-shop-filters.php` | Off-canvas filters with live counts, active-filter chips, sorting options |
+| `class-cart.php` | Side cart (opens on add-to-cart / cart icons), free-shipping progress bar, cart WhatsApp button |
+| `class-checkout.php` | Short checkout (name, mobile, area, address, notes), phone validation + normalisation to +974…, no terms checkbox |
+| `class-whatsapp-gateway.php` | "Confirm via WhatsApp" checkout method: order saved on-hold, then WhatsApp opens with the full summary |
 | `class-search.php` | Normalised product search index (Arabic variants, English names, brands + aliases, notes); `wp nafha reindex` |

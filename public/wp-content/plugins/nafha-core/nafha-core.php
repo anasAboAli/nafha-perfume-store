@@ -40,6 +40,9 @@ function nafha_core_boot() {
 		'class-review-photos.php',
 		'class-shop-filters.php',
 		'class-search.php',
+		'class-cart.php',
+		'class-checkout.php',
+		'class-whatsapp-gateway.php',
 	);
 
 	foreach ( $modules as $module ) {

@@ -21,7 +21,6 @@ return array(
 		'Al Shamal'             => 'الشمال',
 		'Dukhan'                => 'دخان',
 		'Area'                  => 'المنطقة',
-		'District'              => 'الحي',
 
 		// Settings.
 		'Nafha'                 => 'نفحة',
@@ -96,6 +95,43 @@ return array(
 		// Search.
 		'Search aliases'        => 'أسماء بديلة للبحث',
 		'Other spellings customers may type, e.g. the Arabic name. Comma separated.' => 'طرق كتابة أخرى قد يستخدمها العملاء، مثل الاسم بالعربية. افصل بينها بفاصلة.',
+
+		// Cart.
+		'Your order ships free!' => 'طلبك مؤهل للتوصيل المجاني!',
+		'Add %s more for free delivery' => 'أضف %s للحصول على توصيل مجاني',
+		'Your cart'             => 'سلة التسوق',
+
+		// Checkout.
+		'Full name'             => 'الاسم الكامل',
+		'Delivery details'      => 'بيانات التوصيل',
+		'Delivery address'      => 'عنوان التوصيل',
+		'Mobile number'         => 'رقم الجوال',
+		'Address'               => 'العنوان',
+		'Zone, street and building number' => 'رقم المنطقة، الشارع، رقم المبنى',
+		'Email, for order updates' => 'البريد الإلكتروني لتحديثات الطلب',
+		'Delivery time, landmark, gift message…' => 'وقت التوصيل المناسب، معلم قريب، رسالة إهداء…',
+		'Please enter a valid mobile number, e.g. 5555 1234 or +974 5555 1234.' => 'يرجى إدخال رقم جوال صحيح، مثال: 5555 1234 أو 5555 1234 974+.',
+
+		// WhatsApp checkout method.
+		'Confirm via WhatsApp'  => 'تأكيد الطلب عبر واتساب',
+		'Registers the order, then opens WhatsApp with the order summary so the customer confirms it with the store. Payment on delivery.' => 'يسجّل الطلب ثم يفتح واتساب بملخص الطلب ليؤكده العميل مع المتجر. الدفع عند الاستلام.',
+		'Enable/Disable'        => 'تفعيل/تعطيل',
+		'Enable WhatsApp confirmation' => 'تفعيل التأكيد عبر واتساب',
+		'Title'                 => 'العنوان',
+		'Description'           => 'الوصف',
+		'We will register your order and take you to WhatsApp to send it to our team. You pay on delivery.' => 'سنسجّل طلبك وننقلك إلى واتساب لإرساله لفريقنا. الدفع عند الاستلام.',
+		'Awaiting confirmation via WhatsApp.' => 'بانتظار تأكيد العميل عبر واتساب.',
+		'New order #%s'         => 'طلب جديد رقم %s',
+		'Shipping'              => 'التوصيل',
+		'Free'                  => 'مجاني',
+		'Discount'              => 'الخصم',
+		'Total'                 => 'الإجمالي',
+		'Name'                  => 'الاسم',
+		'Mobile'                => 'الجوال',
+		'Notes'                 => 'ملاحظات',
+		'One last step: send your order on WhatsApp' => 'خطوة أخيرة: أرسل طلبك عبر واتساب',
+		'Your order is registered. Send it to us on WhatsApp so our team can confirm it and arrange delivery.' => 'تم تسجيل طلبك. أرسله لنا عبر واتساب ليؤكده فريقنا ويرتّب التوصيل.',
+		'Send order on WhatsApp' => 'إرسال الطلب عبر واتساب',
 
 		// Review photos.
 		'Add a photo (optional)' => 'أضف صورة (اختياري)',

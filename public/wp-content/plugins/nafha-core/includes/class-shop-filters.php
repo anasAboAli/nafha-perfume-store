@@ -77,7 +77,7 @@ final class Nafha_Shop_Filters {
 		$css = 'assets/css/shop.css';
 		$js  = 'assets/js/shop.js';
 		wp_enqueue_style( 'nafha-shop', NAFHA_CORE_URL . $css, array(), (string) filemtime( NAFHA_CORE_DIR . $css ) );
-		wp_enqueue_script( 'nafha-shop', NAFHA_CORE_URL . $js, array(), (string) filemtime( NAFHA_CORE_DIR . $js ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
+		wp_enqueue_script( 'nafha-shop', NAFHA_CORE_URL . $js, array( 'nafha-drawer' ), (string) filemtime( NAFHA_CORE_DIR . $js ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
 	}
 
 	/* ------------------------------------------------------------- data */

@@ -67,8 +67,8 @@ final class Nafha_Qatar_Areas {
 				'priority' => 42,
 			),
 			'city'     => array(
-				'label'    => __( 'District', 'nafha-core' ),
 				'required' => false,
+				'hidden'   => true, // The area dropdown is the "city"; see Nafha_Checkout.
 			),
 		);
 		return $locale;

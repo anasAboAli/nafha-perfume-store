@@ -18,6 +18,10 @@ final class Nafha_WhatsApp {
 
 	/**
 	 * wa.me link for a message.
+	 *
+	 * Echo it with esc_attr(), not esc_url(): esc_url() strips encoded line breaks
+	 * (%0A) and the message would collapse onto one line. The link is safe as built:
+	 * fixed https://wa.me/ prefix, digits-only number, rawurlencode()d text.
 	 */
 	public static function link( $message ) {
 		return 'https://wa.me/' . Nafha_Settings::whatsapp_number() . '?text=' . rawurlencode( $message );
@@ -38,7 +42,7 @@ final class Nafha_WhatsApp {
 			)
 		);
 		?>
-		<a class="nafha-wa-btn button" href="<?php echo esc_url( self::link( $fallback ) ); ?>" target="_blank" rel="noopener"
+		<a class="nafha-wa-btn button" href="<?php echo esc_attr( self::link( $fallback ) ); // See link(). ?>" target="_blank" rel="noopener"
 			data-number="<?php echo esc_attr( Nafha_Settings::whatsapp_number() ); ?>"
 			data-name="<?php echo esc_attr( $product->get_name() ); ?>"
 			data-url="<?php echo esc_url( get_permalink( $product->get_id() ) ); ?>"

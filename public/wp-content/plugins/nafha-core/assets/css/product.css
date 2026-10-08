@@ -154,22 +154,9 @@
 	flex-wrap: wrap;
 }
 
-.nafha-wa-btn.button {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
+.single-product .nafha-wa-btn.button {
 	flex-basis: 100%;
 	margin-block-start: 10px;
-	background: #1fa855;
-	border-color: #1fa855;
-	color: #fff;
-}
-
-.nafha-wa-btn.button:hover {
-	background: #188a46;
-	border-color: #188a46;
-	color: #fff;
 }
 
 .nafha-wa-btn[aria-disabled="true"] {

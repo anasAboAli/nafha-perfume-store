@@ -320,3 +320,12 @@ button[type="submit"],
 		font-size: 26px;
 	}
 }
+
+/* ------------------------------------------------------------ notices */
+
+/* Blocksy draws the notice icon at the inline start (right in RTL) but keeps
+   the icon's 46px gutter on the left, so the icon covers the text. */
+[dir="rtl"] :is(.woocommerce-notice, .woocommerce-info, .woocommerce-message, .woocommerce-error) {
+	padding-right: 46px;
+	padding-left: 15px;
+}

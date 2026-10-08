@@ -11,39 +11,9 @@
 	const RESULTS = 'main#main .ct-container > section';
 	const drawer = document.getElementById( 'nafha-filters' );
 	let controller = null;
-	let lastToggle = null;
 
-	/* -------------------------------------------------------- drawer */
-
-	function openDrawer( toggle ) {
-		if ( ! drawer ) {
-			return;
-		}
-		lastToggle = toggle;
-		drawer.hidden = false;
-		document.documentElement.classList.add( 'nafha-drawer-open' );
-		requestAnimationFrame( () => drawer.classList.add( 'is-open' ) );
-		toggle.setAttribute( 'aria-expanded', 'true' );
-		const first = drawer.querySelector( '.nafha-drawer__close' );
-		if ( first ) {
-			first.focus();
-		}
-	}
-
-	function closeDrawer() {
-		if ( ! drawer || drawer.hidden ) {
-			return;
-		}
-		drawer.classList.remove( 'is-open' );
-		document.documentElement.classList.remove( 'nafha-drawer-open' );
-		setTimeout( () => {
-			drawer.hidden = true;
-		}, 250 );
-		document.querySelectorAll( '.nafha-filter-toggle' ).forEach( ( t ) => t.setAttribute( 'aria-expanded', 'false' ) );
-		if ( lastToggle && document.contains( lastToggle ) ) {
-			lastToggle.focus();
-		}
-	}
+	const openDrawer = ( toggle ) => window.nafhaDrawer.open( 'nafha-filters', toggle );
+	const closeDrawer = () => window.nafhaDrawer.close();
 
 	/* --------------------------------------------------- URL from form */
 
@@ -157,12 +127,6 @@
 		if ( link && link.href && ! event.metaKey && ! event.ctrlKey ) {
 			event.preventDefault();
 			navigate( link.href, { scroll: ! drawer || drawer.hidden } );
-			return;
-		}
-
-		if ( event.target.closest( '[data-nafha-close]' ) ) {
-			event.preventDefault();
-			closeDrawer();
 		}
 	} );
 
@@ -198,12 +162,6 @@
 		}
 		if ( event.target.closest( '#nafha-filters form' ) ) {
 			event.preventDefault();
-			closeDrawer();
-		}
-	} );
-
-	document.addEventListener( 'keydown', ( event ) => {
-		if ( event.key === 'Escape' ) {
 			closeDrawer();
 		}
 	} );
