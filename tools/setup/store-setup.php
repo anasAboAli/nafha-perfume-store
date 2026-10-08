@@ -402,11 +402,20 @@ $pages = array(
 	'faq'              => array( 'الأسئلة الشائعة', $p( 'هل العطور أصلية؟ نعم، جميع العطور أصلية 100% ويتم تقسيمها من العبوة الأصلية في عبوات زجاجية معقّمة.' ) ),
 	'shipping-returns' => array( 'سياسة الشحن والاسترجاع', $p( 'نوصل لجميع مناطق قطر. التوصيل داخل الدوحة خلال 24 ساعة، والشحن مجاني للطلبات التي تزيد عن 60 دولارًا.' ) ),
 	'terms'            => array( 'الشروط والأحكام', $p( 'باستخدامك لموقع نفحة فإنك توافق على الشروط والأحكام التالية.' ) ),
-	'fragrance-quiz'   => array( 'شو عطرك المناسب؟', $p( 'أجب عن بضعة أسئلة بسيطة وسنقترح عليك العطور الأنسب لذوقك.' ) ),
+	'fragrance-quiz'   => array( 'شو عطرك المناسب؟', $p( 'أجب عن ستة أسئلة بسيطة وسنقترح عليك العطور الأنسب لذوقك.' ) . "\n\n<!-- wp:shortcode -->\n[nafha_quiz]\n<!-- /wp:shortcode -->" ),
+	'discovery-box'    => array( 'صندوق التجربة', $p( 'اختر 3 أو 5 عطور بسعة 5 أو 10 مل في صندوق واحد ووفّر حتى 20%. أفضل طريقة لتجربة أكثر من عطر قبل شراء العبوة الكاملة.' ) . "\n\n<!-- wp:shortcode -->\n[nafha_discovery_box]\n<!-- /wp:shortcode -->" ),
 );
 $page_ids = array();
 foreach ( $pages as $slug => $def ) {
 	$page_ids[ $slug ] = nafha_setup_page( $slug, $def[0], $def[1] );
+}
+
+// Feature pages need their shortcode even if the page already existed with placeholder text.
+foreach ( array( 'fragrance-quiz' => 'nafha_quiz', 'discovery-box' => 'nafha_discovery_box' ) as $slug => $shortcode ) {
+	$content = get_post_field( 'post_content', $page_ids[ $slug ] );
+	if ( ! has_shortcode( $content, $shortcode ) ) {
+		wp_update_post( array( 'ID' => $page_ids[ $slug ], 'post_content' => $pages[ $slug ][1] ) );
+	}
 }
 
 $privacy_id = (int) get_option( 'wp_page_for_privacy_policy' );
@@ -462,6 +471,7 @@ $main_menu = nafha_setup_menu(
 		array( 'cat', 'women-perfumes', 'نسائي' ),
 		array( 'cat', 'unisex-perfumes', 'للجنسين' ),
 		array( 'cat', 'gift-sets', 'باقات الهدايا' ),
+		array( 'page', $page_ids['discovery-box'], 'صندوق التجربة' ),
 		array( 'page', $page_ids['fragrance-quiz'], 'شو عطرك المناسب؟' ),
 	)
 );
@@ -472,6 +482,7 @@ $footer_shop = nafha_setup_menu(
 		array( 'cat', 'women-perfumes', 'عطور نسائية' ),
 		array( 'cat', 'unisex-perfumes', 'عطور للجنسين' ),
 		array( 'cat', 'gift-sets', 'باقات الهدايا' ),
+		array( 'page', $page_ids['discovery-box'], 'صندوق التجربة' ),
 		array( 'cat', 'full-bottles', 'عبوات كاملة' ),
 	)
 );

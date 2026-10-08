@@ -47,4 +47,6 @@ Demo products are flagged with `_nafha_demo` — see the header of `tools/setup/
 | `class-cart.php` | Side cart (opens on add-to-cart / cart icons), free-shipping progress bar, cart WhatsApp button |
 | `class-checkout.php` | Short checkout (name, mobile, area, address, notes), phone validation + normalisation to +974…, no terms checkbox |
 | `class-whatsapp-gateway.php` | "Confirm via WhatsApp" checkout method: order saved on-hold, then WhatsApp opens with the full summary |
+| `class-quiz.php` | Fragrance quiz `[nafha_quiz]`: 6 questions, server-side scoring, match % on product cards |
+| `class-offers.php` | Discovery box builder `[nafha_discovery_box]` (discounted box of 3/5 decants) and sample quantity discount |
 | `class-search.php` | Normalised product search index (Arabic variants, English names, brands + aliases, notes); `wp nafha reindex` |

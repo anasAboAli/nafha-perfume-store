@@ -1,312 +1,597 @@
 [
-  {
-    "slug": "dior-sauvage-edp",
-    "name": "سوفاج أو دو بارفان",
-    "name_en": "Sauvage Eau de Parfum",
-    "brand": "dior",
-    "brand_label": "DIOR",
-    "categories": ["men-perfumes"],
-    "gender": "men",
-    "family": ["fresh", "woody"],
-    "season": ["all-seasons"],
-    "occasion": ["daily", "evening"],
-    "concentration": "edp",
-    "notes": {
-      "top": "برغموت كالابريا، فلفل",
-      "heart": "لافندر، يانسون نجمي، جوزة الطيب",
-      "base": "أمبروكسان، فانيليا بابوا غينيا"
+    {
+        "slug": "dior-sauvage-edp",
+        "name": "سوفاج أو دو بارفان",
+        "name_en": "Sauvage Eau de Parfum",
+        "brand": "dior",
+        "brand_label": "DIOR",
+        "categories": [
+            "men-perfumes"
+        ],
+        "gender": "men",
+        "family": [
+            "fresh",
+            "woody"
+        ],
+        "season": [
+            "all-seasons"
+        ],
+        "occasion": [
+            "daily",
+            "evening"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "برغموت كالابريا، فلفل",
+            "heart": "لافندر، يانسون نجمي، جوزة الطيب",
+            "base": "أمبروكسان، فانيليا بابوا غينيا"
+        },
+        "longevity": 4,
+        "sillage": 4,
+        "prices": {
+            "5ml": 9,
+            "10ml": 16,
+            "30ml": 42,
+            "full-bottle": 165
+        },
+        "full_ml": 100,
+        "stock": {
+            "30ml": 2
+        },
+        "color": "#3d6f9e",
+        "featured": true,
+        "short": "عطر رجالي منعش وجريء يجمع حدة البرغموت مع دفء الفانيليا والأمبروكسان. خيار مثالي للاستخدام اليومي والسهرات.",
+        "description": "سوفاج أو دو بارفان من ديور نسخة أعمق وأكثر دفئًا من سوفاج الكلاسيكي. يفتتح بانتعاش البرغموت الحاد مع لمسة فلفل، ثم ينتقل إلى قلب عطري من اللافندر واليانسون النجمي، ويستقر على قاعدة ناعمة من الفانيليا والأمبروكسان. عطر متعدد الاستخدامات يناسب كل المواسم ويترك أثرًا واضحًا."
     },
-    "longevity": 4,
-    "sillage": 4,
-    "prices": { "5ml": 9, "10ml": 16, "30ml": 42, "full-bottle": 165 },
-    "full_ml": 100,
-    "stock": { "30ml": 2 },
-    "color": "#3d6f9e",
-    "featured": true,
-    "short": "عطر رجالي منعش وجريء يجمع حدة البرغموت مع دفء الفانيليا والأمبروكسان. خيار مثالي للاستخدام اليومي والسهرات.",
-    "description": "سوفاج أو دو بارفان من ديور نسخة أعمق وأكثر دفئًا من سوفاج الكلاسيكي. يفتتح بانتعاش البرغموت الحاد مع لمسة فلفل، ثم ينتقل إلى قلب عطري من اللافندر واليانسون النجمي، ويستقر على قاعدة ناعمة من الفانيليا والأمبروكسان. عطر متعدد الاستخدامات يناسب كل المواسم ويترك أثرًا واضحًا."
-  },
-  {
-    "slug": "bleu-de-chanel-edp",
-    "name": "بلو دو شانيل أو دو بارفان",
-    "name_en": "Bleu de Chanel Eau de Parfum",
-    "brand": "chanel",
-    "brand_label": "CHANEL",
-    "categories": ["men-perfumes"],
-    "gender": "men",
-    "family": ["woody", "citrus"],
-    "season": ["all-seasons"],
-    "occasion": ["work", "daily"],
-    "concentration": "edp",
-    "notes": {
-      "top": "جريب فروت، ليمون، نعناع، فلفل وردي",
-      "heart": "زنجبيل، جوزة الطيب، ياسمين",
-      "base": "بخور، خشب الصندل، أرز، عنبر"
+    {
+        "slug": "bleu-de-chanel-edp",
+        "name": "بلو دو شانيل أو دو بارفان",
+        "name_en": "Bleu de Chanel Eau de Parfum",
+        "brand": "chanel",
+        "brand_label": "CHANEL",
+        "categories": [
+            "men-perfumes"
+        ],
+        "gender": "men",
+        "family": [
+            "woody",
+            "citrus"
+        ],
+        "season": [
+            "all-seasons"
+        ],
+        "occasion": [
+            "work",
+            "daily"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "جريب فروت، ليمون، نعناع، فلفل وردي",
+            "heart": "زنجبيل، جوزة الطيب، ياسمين",
+            "base": "بخور، خشب الصندل، أرز، عنبر"
+        },
+        "longevity": 4,
+        "sillage": 3,
+        "prices": {
+            "5ml": 10,
+            "10ml": 18,
+            "30ml": 48,
+            "full-bottle": 175
+        },
+        "full_ml": 100,
+        "color": "#1f3a5f",
+        "short": "عطر خشبي حمضي أنيق، توقيع الرجل العصري في العمل والمناسبات اليومية.",
+        "description": "بلو دو شانيل عطر رجالي خشبي بطابع حمضي منعش. افتتاحية من الجريب فروت والليمون والنعناع تمنح شعورًا بالحيوية، يليها قلب دافئ من الزنجبيل والياسمين، ثم قاعدة راقية من البخور وخشب الصندل والأرز. عطر متزن وأنيق يناسب المكتب واللقاءات الرسمية."
     },
-    "longevity": 4,
-    "sillage": 3,
-    "prices": { "5ml": 10, "10ml": 18, "30ml": 48, "full-bottle": 175 },
-    "full_ml": 100,
-    "color": "#1f3a5f",
-    "short": "عطر خشبي حمضي أنيق، توقيع الرجل العصري في العمل والمناسبات اليومية.",
-    "description": "بلو دو شانيل عطر رجالي خشبي بطابع حمضي منعش. افتتاحية من الجريب فروت والليمون والنعناع تمنح شعورًا بالحيوية، يليها قلب دافئ من الزنجبيل والياسمين، ثم قاعدة راقية من البخور وخشب الصندل والأرز. عطر متزن وأنيق يناسب المكتب واللقاءات الرسمية."
-  },
-  {
-    "slug": "creed-aventus",
-    "name": "أفينتوس",
-    "name_en": "Aventus",
-    "brand": "creed",
-    "brand_label": "CREED",
-    "categories": ["men-perfumes"],
-    "gender": "men",
-    "family": ["fresh", "woody"],
-    "season": ["spring", "summer"],
-    "occasion": ["special", "daily"],
-    "concentration": "edp",
-    "notes": {
-      "top": "أناناس، برغموت، كشمش أسود، تفاح",
-      "heart": "خشب البتولا، باتشولي، ورد، ياسمين",
-      "base": "مسك، طحلب البلوط، عنبر رمادي، فانيليا"
+    {
+        "slug": "creed-aventus",
+        "name": "أفينتوس",
+        "name_en": "Aventus",
+        "brand": "creed",
+        "brand_label": "CREED",
+        "categories": [
+            "men-perfumes"
+        ],
+        "gender": "men",
+        "family": [
+            "fresh",
+            "woody"
+        ],
+        "season": [
+            "spring",
+            "summer"
+        ],
+        "occasion": [
+            "special",
+            "daily"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "أناناس، برغموت، كشمش أسود، تفاح",
+            "heart": "خشب البتولا، باتشولي، ورد، ياسمين",
+            "base": "مسك، طحلب البلوط، عنبر رمادي، فانيليا"
+        },
+        "longevity": 4,
+        "sillage": 4,
+        "prices": {
+            "5ml": 18,
+            "10ml": 32,
+            "30ml": 85,
+            "full-bottle": 420
+        },
+        "full_ml": 100,
+        "color": "#5b6b4a",
+        "featured": true,
+        "short": "أيقونة العطور الرجالية: أناناس فاكهي مع دخان البتولا ودفء المسك.",
+        "description": "أفينتوس من كريد واحد من أشهر العطور الرجالية في العالم. يبدأ بنفحة فاكهية من الأناناس والتفاح والكشمش، ويتطور إلى قلب مدخّن من خشب البتولا والباتشولي، وينتهي بقاعدة من المسك والعنبر الرمادي. عطر الثقة والنجاح، مناسب للمناسبات الخاصة وللأيام الدافئة."
     },
-    "longevity": 4,
-    "sillage": 4,
-    "prices": { "5ml": 18, "10ml": 32, "30ml": 85, "full-bottle": 420 },
-    "full_ml": 100,
-    "color": "#5b6b4a",
-    "featured": true,
-    "short": "أيقونة العطور الرجالية: أناناس فاكهي مع دخان البتولا ودفء المسك.",
-    "description": "أفينتوس من كريد واحد من أشهر العطور الرجالية في العالم. يبدأ بنفحة فاكهية من الأناناس والتفاح والكشمش، ويتطور إلى قلب مدخّن من خشب البتولا والباتشولي، وينتهي بقاعدة من المسك والعنبر الرمادي. عطر الثقة والنجاح، مناسب للمناسبات الخاصة وللأيام الدافئة."
-  },
-  {
-    "slug": "tom-ford-oud-wood",
-    "name": "عود وود",
-    "name_en": "Oud Wood",
-    "brand": "tom-ford",
-    "brand_label": "TOM FORD",
-    "categories": ["unisex-perfumes"],
-    "gender": "unisex",
-    "family": ["woody", "oriental"],
-    "season": ["autumn", "winter"],
-    "occasion": ["evening", "special"],
-    "concentration": "edp",
-    "notes": {
-      "top": "خشب الورد، هيل، فلفل صيني",
-      "heart": "عود، خشب الصندل، فيتيفر",
-      "base": "حبوب التونكا، فانيليا، عنبر"
+    {
+        "slug": "tom-ford-oud-wood",
+        "name": "عود وود",
+        "name_en": "Oud Wood",
+        "brand": "tom-ford",
+        "brand_label": "TOM FORD",
+        "categories": [
+            "unisex-perfumes"
+        ],
+        "gender": "unisex",
+        "family": [
+            "woody",
+            "oriental"
+        ],
+        "season": [
+            "autumn",
+            "winter"
+        ],
+        "occasion": [
+            "evening",
+            "special"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "خشب الورد، هيل، فلفل صيني",
+            "heart": "عود، خشب الصندل، فيتيفر",
+            "base": "حبوب التونكا، فانيليا، عنبر"
+        },
+        "longevity": 4,
+        "sillage": 3,
+        "prices": {
+            "5ml": 16,
+            "10ml": 29,
+            "30ml": 78,
+            "full-bottle": 350
+        },
+        "full_ml": 50,
+        "color": "#6b3f2a",
+        "featured": true,
+        "short": "عود ناعم ومصقول بلمسة غربية، دافئ وفاخر للسهرات والأجواء الباردة.",
+        "description": "عود وود من توم فورد يقدّم العود بأسلوب ناعم وراقٍ يناسب الذوق العربي والغربي معًا. افتتاحية من خشب الورد والهيل، وقلب من العود وخشب الصندل، وقاعدة كريمية من التونكا والفانيليا. عطر للجنسين يمنح حضورًا هادئًا وفخمًا."
     },
-    "longevity": 4,
-    "sillage": 3,
-    "prices": { "5ml": 16, "10ml": 29, "30ml": 78, "full-bottle": 350 },
-    "full_ml": 50,
-    "color": "#6b3f2a",
-    "featured": true,
-    "short": "عود ناعم ومصقول بلمسة غربية، دافئ وفاخر للسهرات والأجواء الباردة.",
-    "description": "عود وود من توم فورد يقدّم العود بأسلوب ناعم وراقٍ يناسب الذوق العربي والغربي معًا. افتتاحية من خشب الورد والهيل، وقلب من العود وخشب الصندل، وقاعدة كريمية من التونكا والفانيليا. عطر للجنسين يمنح حضورًا هادئًا وفخمًا."
-  },
-  {
-    "slug": "mfk-baccarat-rouge-540",
-    "name": "باكارات روج 540",
-    "name_en": "Baccarat Rouge 540",
-    "brand": "maison-francis-kurkdjian",
-    "brand_label": "MAISON FRANCIS KURKDJIAN",
-    "categories": ["unisex-perfumes"],
-    "gender": "unisex",
-    "family": ["amber", "woody"],
-    "season": ["autumn", "winter"],
-    "occasion": ["evening", "special"],
-    "concentration": "edp",
-    "notes": {
-      "top": "زعفران، ياسمين",
-      "heart": "خشب العنبر، عنبر رمادي",
-      "base": "راتنج التنوب، أرز"
+    {
+        "slug": "mfk-baccarat-rouge-540",
+        "name": "باكارات روج 540",
+        "name_en": "Baccarat Rouge 540",
+        "brand": "maison-francis-kurkdjian",
+        "brand_label": "MAISON FRANCIS KURKDJIAN",
+        "categories": [
+            "unisex-perfumes"
+        ],
+        "gender": "unisex",
+        "family": [
+            "amber",
+            "woody"
+        ],
+        "season": [
+            "autumn",
+            "winter"
+        ],
+        "occasion": [
+            "evening",
+            "special"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "زعفران، ياسمين",
+            "heart": "خشب العنبر، عنبر رمادي",
+            "base": "راتنج التنوب، أرز"
+        },
+        "longevity": 5,
+        "sillage": 5,
+        "prices": {
+            "5ml": 20,
+            "10ml": 36,
+            "30ml": 95,
+            "full-bottle": 395
+        },
+        "full_ml": 70,
+        "stock": {
+            "full-bottle": 0
+        },
+        "color": "#b5473a",
+        "featured": true,
+        "short": "توقيع عنبري مضيء من الزعفران وخشب العنبر، ثبات وانتشار استثنائيان.",
+        "description": "باكارات روج 540 تحفة ميزون فرانسيس كوركدجيان. مزيج فريد من الزعفران والياسمين مع خشب العنبر والعنبر الرمادي، يترك أثرًا حلوًا معدنيًا لا يُنسى. من أكثر العطور طلبًا في الخليج لثباته الطويل وانتشاره القوي."
     },
-    "longevity": 5,
-    "sillage": 5,
-    "prices": { "5ml": 20, "10ml": 36, "30ml": 95, "full-bottle": 395 },
-    "full_ml": 70,
-    "stock": { "full-bottle": 0 },
-    "color": "#b5473a",
-    "featured": true,
-    "short": "توقيع عنبري مضيء من الزعفران وخشب العنبر، ثبات وانتشار استثنائيان.",
-    "description": "باكارات روج 540 تحفة ميزون فرانسيس كوركدجيان. مزيج فريد من الزعفران والياسمين مع خشب العنبر والعنبر الرمادي، يترك أثرًا حلوًا معدنيًا لا يُنسى. من أكثر العطور طلبًا في الخليج لثباته الطويل وانتشاره القوي."
-  },
-  {
-    "slug": "chanel-coco-mademoiselle",
-    "name": "كوكو مدموازيل",
-    "name_en": "Coco Mademoiselle",
-    "brand": "chanel",
-    "brand_label": "CHANEL",
-    "categories": ["women-perfumes"],
-    "gender": "women",
-    "family": ["floral", "oriental"],
-    "season": ["spring", "autumn"],
-    "occasion": ["work", "evening"],
-    "concentration": "edp",
-    "notes": {
-      "top": "برتقال، برغموت، يوسفي",
-      "heart": "ورد، ياسمين، ليتشي",
-      "base": "باتشولي، فانيليا، مسك أبيض، فيتيفر"
+    {
+        "slug": "chanel-coco-mademoiselle",
+        "name": "كوكو مدموازيل",
+        "name_en": "Coco Mademoiselle",
+        "brand": "chanel",
+        "brand_label": "CHANEL",
+        "categories": [
+            "women-perfumes"
+        ],
+        "gender": "women",
+        "family": [
+            "floral",
+            "oriental"
+        ],
+        "season": [
+            "spring",
+            "autumn"
+        ],
+        "occasion": [
+            "work",
+            "evening"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "برتقال، برغموت، يوسفي",
+            "heart": "ورد، ياسمين، ليتشي",
+            "base": "باتشولي، فانيليا، مسك أبيض، فيتيفر"
+        },
+        "longevity": 4,
+        "sillage": 4,
+        "prices": {
+            "5ml": 12,
+            "10ml": 22,
+            "30ml": 58,
+            "full-bottle": 185
+        },
+        "full_ml": 100,
+        "color": "#d9a3a0",
+        "featured": true,
+        "short": "عطر نسائي أنيق يجمع إشراقة الحمضيات مع الورد والباتشولي.",
+        "description": "كوكو مدموازيل من شانيل عطر المرأة الواثقة. يفتتح بانتعاش البرتقال والبرغموت، ثم يتفتح قلب من الورد والياسمين، ويستقر على قاعدة دافئة من الباتشولي والفانيليا والمسك الأبيض. أنيق في النهار وجذاب في المساء."
     },
-    "longevity": 4,
-    "sillage": 4,
-    "prices": { "5ml": 12, "10ml": 22, "30ml": 58, "full-bottle": 185 },
-    "full_ml": 100,
-    "color": "#d9a3a0",
-    "featured": true,
-    "short": "عطر نسائي أنيق يجمع إشراقة الحمضيات مع الورد والباتشولي.",
-    "description": "كوكو مدموازيل من شانيل عطر المرأة الواثقة. يفتتح بانتعاش البرتقال والبرغموت، ثم يتفتح قلب من الورد والياسمين، ويستقر على قاعدة دافئة من الباتشولي والفانيليا والمسك الأبيض. أنيق في النهار وجذاب في المساء."
-  },
-  {
-    "slug": "ysl-libre-edp",
-    "name": "ليبر أو دو بارفان",
-    "name_en": "Libre Eau de Parfum",
-    "brand": "yves-saint-laurent",
-    "brand_label": "YVES SAINT LAURENT",
-    "categories": ["women-perfumes"],
-    "gender": "women",
-    "family": ["floral", "amber"],
-    "season": ["autumn", "winter"],
-    "occasion": ["evening"],
-    "concentration": "edp",
-    "notes": {
-      "top": "لافندر، يوسفي، كشمش أسود",
-      "heart": "زهر البرتقال، ياسمين، لافندر",
-      "base": "فانيليا مدغشقر، مسك، أرز، عنبر رمادي"
+    {
+        "slug": "ysl-libre-edp",
+        "name": "ليبر أو دو بارفان",
+        "name_en": "Libre Eau de Parfum",
+        "brand": "yves-saint-laurent",
+        "brand_label": "YVES SAINT LAURENT",
+        "categories": [
+            "women-perfumes"
+        ],
+        "gender": "women",
+        "family": [
+            "floral",
+            "amber"
+        ],
+        "season": [
+            "autumn",
+            "winter"
+        ],
+        "occasion": [
+            "evening"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "لافندر، يوسفي، كشمش أسود",
+            "heart": "زهر البرتقال، ياسمين، لافندر",
+            "base": "فانيليا مدغشقر، مسك، أرز، عنبر رمادي"
+        },
+        "longevity": 4,
+        "sillage": 4,
+        "prices": {
+            "5ml": 11,
+            "10ml": 20,
+            "30ml": 52,
+            "full-bottle": 165
+        },
+        "full_ml": 90,
+        "color": "#c9a24a",
+        "short": "زهور جريئة مع لافندر وفانيليا، عطر الحرية والأنوثة الواثقة.",
+        "description": "ليبر من إيف سان لوران عطر زهري عنبري يمزج زهر البرتقال المغربي مع اللافندر الفرنسي بطريقة جريئة. القاعدة من فانيليا مدغشقر والمسك تمنحه دفئًا وثباتًا ممتازًا. مثالي لأمسيات الخريف والشتاء."
     },
-    "longevity": 4,
-    "sillage": 4,
-    "prices": { "5ml": 11, "10ml": 20, "30ml": 52, "full-bottle": 165 },
-    "full_ml": 90,
-    "color": "#c9a24a",
-    "short": "زهور جريئة مع لافندر وفانيليا، عطر الحرية والأنوثة الواثقة.",
-    "description": "ليبر من إيف سان لوران عطر زهري عنبري يمزج زهر البرتقال المغربي مع اللافندر الفرنسي بطريقة جريئة. القاعدة من فانيليا مدغشقر والمسك تمنحه دفئًا وثباتًا ممتازًا. مثالي لأمسيات الخريف والشتاء."
-  },
-  {
-    "slug": "dior-jadore-edp",
-    "name": "جادور أو دو بارفان",
-    "name_en": "J'adore Eau de Parfum",
-    "brand": "dior",
-    "brand_label": "DIOR",
-    "categories": ["women-perfumes"],
-    "gender": "women",
-    "family": ["floral"],
-    "season": ["spring", "summer"],
-    "occasion": ["daily", "special"],
-    "concentration": "edp",
-    "notes": {
-      "top": "كمثرى، شمام، ماغنوليا، خوخ",
-      "heart": "ياسمين، زنبق الوادي، مسك الروم، ورد",
-      "base": "مسك، فانيليا، أرز"
+    {
+        "slug": "dior-jadore-edp",
+        "name": "جادور أو دو بارفان",
+        "name_en": "J'adore Eau de Parfum",
+        "brand": "dior",
+        "brand_label": "DIOR",
+        "categories": [
+            "women-perfumes"
+        ],
+        "gender": "women",
+        "family": [
+            "floral"
+        ],
+        "season": [
+            "spring",
+            "summer"
+        ],
+        "occasion": [
+            "daily",
+            "special"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "كمثرى، شمام، ماغنوليا، خوخ",
+            "heart": "ياسمين، زنبق الوادي، مسك الروم، ورد",
+            "base": "مسك، فانيليا، أرز"
+        },
+        "longevity": 3,
+        "sillage": 3,
+        "prices": {
+            "5ml": 10,
+            "10ml": 18,
+            "30ml": 48,
+            "full-bottle": 160
+        },
+        "full_ml": 100,
+        "color": "#e3c27a",
+        "short": "باقة زهور ذهبية مشرقة، أنوثة كلاسيكية للنهار والمناسبات.",
+        "description": "جادور من ديور باقة زهرية فاخرة تتصدرها نفحات الياسمين ومسك الروم والورد، مع لمسات فاكهية من الكمثرى والخوخ في الافتتاح. عطر مضيء وناعم يناسب الربيع والصيف والمناسبات النهارية."
     },
-    "longevity": 3,
-    "sillage": 3,
-    "prices": { "5ml": 10, "10ml": 18, "30ml": 48, "full-bottle": 160 },
-    "full_ml": 100,
-    "color": "#e3c27a",
-    "short": "باقة زهور ذهبية مشرقة، أنوثة كلاسيكية للنهار والمناسبات.",
-    "description": "جادور من ديور باقة زهرية فاخرة تتصدرها نفحات الياسمين ومسك الروم والورد، مع لمسات فاكهية من الكمثرى والخوخ في الافتتاح. عطر مضيء وناعم يناسب الربيع والصيف والمناسبات النهارية."
-  },
-  {
-    "slug": "armani-acqua-di-gio-parfum",
-    "name": "أكوا دي جيو بارفان",
-    "name_en": "Acqua di Giò Parfum",
-    "brand": "giorgio-armani",
-    "brand_label": "GIORGIO ARMANI",
-    "categories": ["men-perfumes"],
-    "gender": "men",
-    "family": ["fresh", "citrus"],
-    "season": ["summer", "spring"],
-    "occasion": ["daily", "work"],
-    "concentration": "parfum",
-    "notes": {
-      "top": "نوتات بحرية، برغموت",
-      "heart": "إكليل الجبل، مريمية، إبرة الراعي",
-      "base": "باتشولي، بخور، فيتيفر"
+    {
+        "slug": "armani-acqua-di-gio-parfum",
+        "name": "أكوا دي جيو بارفان",
+        "name_en": "Acqua di Giò Parfum",
+        "brand": "giorgio-armani",
+        "brand_label": "GIORGIO ARMANI",
+        "categories": [
+            "men-perfumes"
+        ],
+        "gender": "men",
+        "family": [
+            "fresh",
+            "citrus"
+        ],
+        "season": [
+            "summer",
+            "spring"
+        ],
+        "occasion": [
+            "daily",
+            "work"
+        ],
+        "concentration": "parfum",
+        "notes": {
+            "top": "نوتات بحرية، برغموت",
+            "heart": "إكليل الجبل، مريمية، إبرة الراعي",
+            "base": "باتشولي، بخور، فيتيفر"
+        },
+        "longevity": 3,
+        "sillage": 3,
+        "prices": {
+            "5ml": 8,
+            "10ml": 14,
+            "30ml": 36,
+            "full-bottle": 140
+        },
+        "full_ml": 75,
+        "color": "#4f9fb8",
+        "short": "انتعاش بحري مع أعشاب متوسطية، رفيقك المثالي في صيف قطر.",
+        "description": "أكوا دي جيو بارفان من جورجيو أرماني نسخة أعمق من الكلاسيكي الشهير. نوتات بحرية وبرغموت منعشة، يتبعها قلب عشبي من إكليل الجبل والمريمية، وقاعدة من البخور والباتشولي تمنحه ثباتًا أفضل. خيار مثالي للأيام الحارة والعمل."
     },
-    "longevity": 3,
-    "sillage": 3,
-    "prices": { "5ml": 8, "10ml": 14, "30ml": 36, "full-bottle": 140 },
-    "full_ml": 75,
-    "color": "#4f9fb8",
-    "short": "انتعاش بحري مع أعشاب متوسطية، رفيقك المثالي في صيف قطر.",
-    "description": "أكوا دي جيو بارفان من جورجيو أرماني نسخة أعمق من الكلاسيكي الشهير. نوتات بحرية وبرغموت منعشة، يتبعها قلب عشبي من إكليل الجبل والمريمية، وقاعدة من البخور والباتشولي تمنحه ثباتًا أفضل. خيار مثالي للأيام الحارة والعمل."
-  },
-  {
-    "slug": "pdm-layton",
-    "name": "لايتون",
-    "name_en": "Layton",
-    "brand": "parfums-de-marly",
-    "brand_label": "PARFUMS DE MARLY",
-    "categories": ["men-perfumes"],
-    "gender": "men",
-    "family": ["oriental", "woody"],
-    "season": ["autumn", "winter"],
-    "occasion": ["evening", "special"],
-    "concentration": "edp",
-    "notes": {
-      "top": "تفاح، لافندر، برغموت، يوسفي",
-      "heart": "إبرة الراعي، بنفسج، ياسمين",
-      "base": "فانيليا، هيل، خشب الصندل، فلفل، خشب الجاياك"
+    {
+        "slug": "pdm-layton",
+        "name": "لايتون",
+        "name_en": "Layton",
+        "brand": "parfums-de-marly",
+        "brand_label": "PARFUMS DE MARLY",
+        "categories": [
+            "men-perfumes"
+        ],
+        "gender": "men",
+        "family": [
+            "oriental",
+            "woody"
+        ],
+        "season": [
+            "autumn",
+            "winter"
+        ],
+        "occasion": [
+            "evening",
+            "special"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "تفاح، لافندر، برغموت، يوسفي",
+            "heart": "إبرة الراعي، بنفسج، ياسمين",
+            "base": "فانيليا، هيل، خشب الصندل، فلفل، خشب الجاياك"
+        },
+        "longevity": 5,
+        "sillage": 4,
+        "prices": {
+            "5ml": 15,
+            "10ml": 27,
+            "30ml": 70,
+            "full-bottle": 320
+        },
+        "full_ml": 125,
+        "color": "#7a5a8c",
+        "short": "تفاح ولافندر على قاعدة فانيليا وهيل، دفء أنيق للسهرات الشتوية.",
+        "description": "لايتون من بارفام دو مارلي عطر شرقي خشبي يجمع انتعاش التفاح واللافندر مع دفء الفانيليا والهيل. يتميز بثبات طويل جدًا وحضور أنيق، مما يجعله من أفضل الخيارات للسهرات والأجواء الباردة."
     },
-    "longevity": 5,
-    "sillage": 4,
-    "prices": { "5ml": 15, "10ml": 27, "30ml": 70, "full-bottle": 320 },
-    "full_ml": 125,
-    "color": "#7a5a8c",
-    "short": "تفاح ولافندر على قاعدة فانيليا وهيل، دفء أنيق للسهرات الشتوية.",
-    "description": "لايتون من بارفام دو مارلي عطر شرقي خشبي يجمع انتعاش التفاح واللافندر مع دفء الفانيليا والهيل. يتميز بثبات طويل جدًا وحضور أنيق، مما يجعله من أفضل الخيارات للسهرات والأجواء الباردة."
-  },
-  {
-    "slug": "amouage-interlude-man",
-    "name": "إنترلود مان",
-    "name_en": "Interlude Man",
-    "brand": "amouage",
-    "brand_label": "AMOUAGE",
-    "categories": ["men-perfumes"],
-    "gender": "men",
-    "family": ["oriental", "woody"],
-    "season": ["winter"],
-    "occasion": ["evening"],
-    "concentration": "edp",
-    "notes": {
-      "top": "أوريجانو، فلفل، برغموت",
-      "heart": "عنبر، بخور، أوبوباناكس",
-      "base": "جلد، عود، خشب الصندل"
+    {
+        "slug": "amouage-interlude-man",
+        "name": "إنترلود مان",
+        "name_en": "Interlude Man",
+        "brand": "amouage",
+        "brand_label": "AMOUAGE",
+        "categories": [
+            "men-perfumes"
+        ],
+        "gender": "men",
+        "family": [
+            "oriental",
+            "woody"
+        ],
+        "season": [
+            "winter"
+        ],
+        "occasion": [
+            "evening"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "أوريجانو، فلفل، برغموت",
+            "heart": "عنبر، بخور، أوبوباناكس",
+            "base": "جلد، عود، خشب الصندل"
+        },
+        "longevity": 5,
+        "sillage": 5,
+        "prices": {
+            "5ml": 17,
+            "10ml": 30,
+            "30ml": 80,
+            "full-bottle": 380
+        },
+        "full_ml": 100,
+        "stock": {
+            "5ml": 0
+        },
+        "color": "#3a3a4a",
+        "short": "بخور وعنبر وعود بطابع عُماني فاخر، عطر قوي الشخصية للشتاء.",
+        "description": "إنترلود مان من أمواج عطر شرقي جريء بطابع دخاني. يفتتح بالأوريجانو والفلفل، ثم ينفجر قلب من البخور والعنبر والأوبوباناكس، ويستقر على قاعدة من الجلد والعود. لعشّاق العطور القوية والثابتة."
     },
-    "longevity": 5,
-    "sillage": 5,
-    "prices": { "5ml": 17, "10ml": 30, "30ml": 80, "full-bottle": 380 },
-    "full_ml": 100,
-    "stock": { "5ml": 0 },
-    "color": "#3a3a4a",
-    "short": "بخور وعنبر وعود بطابع عُماني فاخر، عطر قوي الشخصية للشتاء.",
-    "description": "إنترلود مان من أمواج عطر شرقي جريء بطابع دخاني. يفتتح بالأوريجانو والفلفل، ثم ينفجر قلب من البخور والعنبر والأوبوباناكس، ويستقر على قاعدة من الجلد والعود. لعشّاق العطور القوية والثابتة."
-  },
-  {
-    "slug": "lattafa-khamrah",
-    "name": "خمرة — عبوة كاملة",
-    "name_en": "Khamrah",
-    "brand": "lattafa",
-    "brand_label": "LATTAFA",
-    "type": "simple",
-    "categories": ["unisex-perfumes", "full-bottles"],
-    "gender": "unisex",
-    "family": ["amber", "oriental"],
-    "season": ["autumn", "winter"],
-    "occasion": ["evening"],
-    "concentration": "edp",
-    "notes": {
-      "top": "قرفة، جوزة الطيب، برغموت",
-      "heart": "تمر، برالين، مسك الروم",
-      "base": "فانيليا، تونكا، خشب العنبر، جاوي"
+    {
+        "slug": "lattafa-khamrah",
+        "name": "خمرة — عبوة كاملة",
+        "name_en": "Khamrah",
+        "brand": "lattafa",
+        "brand_label": "LATTAFA",
+        "type": "simple",
+        "categories": [
+            "unisex-perfumes",
+            "full-bottles"
+        ],
+        "gender": "unisex",
+        "family": [
+            "amber",
+            "oriental"
+        ],
+        "season": [
+            "autumn",
+            "winter"
+        ],
+        "occasion": [
+            "evening"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "قرفة، جوزة الطيب، برغموت",
+            "heart": "تمر، برالين، مسك الروم",
+            "base": "فانيليا، تونكا، خشب العنبر، جاوي"
+        },
+        "longevity": 4,
+        "sillage": 4,
+        "price": 45,
+        "full_ml": 100,
+        "stock_qty": 12,
+        "color": "#8a3b1f",
+        "short": "عطر عربي حلو ودافئ من التمر والقرفة والفانيليا — عبوة كاملة 100 مل.",
+        "description": "خمرة من لطافة عطر شرقي حلو بطابع شتوي. مزيج من القرفة وجوزة الطيب مع التمر والبرالين، وقاعدة دافئة من الفانيليا والتونكا. يُباع كعبوة كاملة 100 مل بسعر مميز."
     },
-    "longevity": 4,
-    "sillage": 4,
-    "price": 45,
-    "full_ml": 100,
-    "stock_qty": 12,
-    "color": "#8a3b1f",
-    "short": "عطر عربي حلو ودافئ من التمر والقرفة والفانيليا — عبوة كاملة 100 مل.",
-    "description": "خمرة من لطافة عطر شرقي حلو بطابع شتوي. مزيج من القرفة وجوزة الطيب مع التمر والبرالين، وقاعدة دافئة من الفانيليا والتونكا. يُباع كعبوة كاملة 100 مل بسعر مميز."
-  }
+    {
+        "slug": "men-discovery-set",
+        "name": "صندوق التجربة الرجالي — 3 × 5 مل",
+        "name_en": "Men's Discovery Set",
+        "brand": "",
+        "brand_label": "NAFHA",
+        "type": "simple",
+        "categories": [
+            "gift-sets"
+        ],
+        "gender": "men",
+        "family": [
+            "fresh",
+            "woody"
+        ],
+        "season": [
+            "all-seasons"
+        ],
+        "occasion": [
+            "daily",
+            "special"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "",
+            "heart": "",
+            "base": ""
+        },
+        "longevity": null,
+        "sillage": null,
+        "price": 32,
+        "stock_qty": 15,
+        "color": "#2b2130",
+        "featured": true,
+        "giftset": {
+            "colors": [
+                "#3d6f9e",
+                "#1f3a5f",
+                "#5b6b4a"
+            ],
+            "labels": [
+                "Sauvage",
+                "Bleu",
+                "Aventus"
+            ]
+        },
+        "short": "ثلاثة من أشهر العطور الرجالية في صندوق أنيق جاهز للإهداء: سوفاج، بلو دو شانيل، وأفينتوس — 5 مل لكل عطر.",
+        "description": "صندوق تجربة جاهز يضم ثلاثة من أكثر العطور الرجالية مبيعًا لدينا، كل عطر بعبوة زجاجية 5 مل مع بخّاخ: سوفاج أو دو بارفان من ديور، بلو دو شانيل أو دو بارفان، وأفينتوس من كريد. مغلّف في صندوق نفحة الفاخر مع بطاقة تعريف لكل عطر، ومناسب كهدية أو لاكتشاف عطرك القادم. توفّر 5$ مقارنة بشراء العينات منفردة."
+    },
+    {
+        "slug": "women-gift-set",
+        "name": "صندوق الهدية النسائي — 3 × 10 مل",
+        "name_en": "Women's Gift Set",
+        "brand": "",
+        "brand_label": "NAFHA",
+        "type": "simple",
+        "categories": [
+            "gift-sets"
+        ],
+        "gender": "women",
+        "family": [
+            "floral",
+            "amber"
+        ],
+        "season": [
+            "all-seasons"
+        ],
+        "occasion": [
+            "special",
+            "evening"
+        ],
+        "concentration": "edp",
+        "notes": {
+            "top": "",
+            "heart": "",
+            "base": ""
+        },
+        "longevity": null,
+        "sillage": null,
+        "price": 52,
+        "stock_qty": 10,
+        "color": "#b5473a",
+        "featured": true,
+        "giftset": {
+            "colors": [
+                "#d9a3a0",
+                "#c9a24a",
+                "#e3c27a"
+            ],
+            "labels": [
+                "Coco",
+                "Libre",
+                "J'adore"
+            ]
+        },
+        "short": "هدية فاخرة لها: كوكو مدموازيل، ليبر، وجادور — 10 مل لكل عطر في صندوق مزيّن جاهز للإهداء.",
+        "description": "صندوق هدية نسائي يضم ثلاثة من أرقى العطور النسائية، كل عطر بعبوة 10 مل تكفي لأسابيع من الاستخدام: كوكو مدموازيل من شانيل، ليبر من إيف سان لوران، وجادور من ديور. يصل في صندوق نفحة المزيّن مع إمكانية إضافة رسالة إهداء في ملاحظات الطلب. توفّر 8$ مقارنة بشراء العينات منفردة."
+    }
 ]

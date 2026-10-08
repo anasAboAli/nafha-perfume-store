@@ -139,7 +139,9 @@ foreach ( $nafha_products as $i => $data ) {
 	}
 
 	$product_id = $product->save();
-	wp_set_object_terms( $product_id, $data['brand'], 'product_brand' );
+	if ( ! empty( $data['brand'] ) ) { // Gift sets mix brands.
+		wp_set_object_terms( $product_id, $data['brand'], 'product_brand' );
+	}
 	foreach ( array_merge( array( $main ), $gallery ) as $attachment_id ) {
 		wp_update_post( array( 'ID' => $attachment_id, 'post_parent' => $product_id ) );
 	}

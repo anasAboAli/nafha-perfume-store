@@ -1,0 +1,179 @@
+/**
+ * Fragrance quiz (nafha-core).
+ */
+
+.nafha-quiz {
+	max-inline-size: 640px;
+	margin-inline: auto;
+}
+
+.nafha-quiz__progress {
+	overflow: hidden;
+	block-size: 4px;
+	margin-block-end: 28px;
+	border-radius: 2px;
+	background: var(--nf-line, #e7ded2);
+}
+
+.nafha-quiz:not(.is-stepped) .nafha-quiz__progress {
+	display: none;
+}
+
+.nafha-quiz__progress span {
+	display: block;
+	inline-size: 0;
+	block-size: 100%;
+	background: var(--nf-gold, #b08a57);
+	transition: inline-size .3s ease;
+}
+
+.nafha-quiz__step {
+	margin: 0 0 32px;
+	padding: 0;
+	border: 0;
+}
+
+.nafha-quiz__step[hidden] {
+	display: none;
+}
+
+.nafha-quiz__step legend {
+	display: block;
+	margin-block-end: 18px;
+	padding: 0;
+	color: var(--nafha-ink-deep, #1e1722);
+	font-size: clamp(20px, 5vw, 26px);
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.nafha-quiz__count {
+	display: block;
+	margin-block-end: 6px;
+	color: var(--nf-gold, #b08a57);
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.nafha-quiz__options {
+	display: grid;
+	gap: 10px;
+}
+
+@media (min-width: 600px) {
+	.nafha-quiz__options {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+.nafha-quiz__option {
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-block-size: 58px;
+	padding: 12px 18px;
+	border: 1.5px solid var(--nf-line, #e7ded2);
+	border-radius: var(--nf-radius, 10px);
+	background: #fff;
+	font-weight: 500;
+	cursor: pointer;
+	transition: border-color .15s, background-color .15s;
+}
+
+.nafha-quiz__option:hover {
+	border-color: var(--nf-gold, #b08a57);
+}
+
+.nafha-quiz__option input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.nafha-quiz__option:has(input:checked) {
+	border-color: var(--nf-ink, #2b2130);
+	background: var(--nf-ink, #2b2130);
+	color: #fff;
+}
+
+.nafha-quiz__option:has(input:focus-visible) {
+	outline: 2px solid var(--nf-gold, #b08a57);
+	outline-offset: 2px;
+}
+
+.nafha-quiz__nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-block-start: 22px;
+}
+
+.nafha-quiz__nav .nafha-quiz__next {
+	margin-inline-start: auto;
+	min-inline-size: 140px;
+}
+
+.nafha-quiz__next:disabled {
+	opacity: .45;
+	cursor: not-allowed;
+}
+
+.nafha-quiz__back {
+	padding: 8px 0;
+	border: 0;
+	background: none;
+	color: var(--nf-muted, #8a8190);
+	font: inherit;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	cursor: pointer;
+}
+
+/* -------------------------------------------------------------- results */
+
+.nafha-quiz-results h2 {
+	margin-block-end: 6px;
+}
+
+.nafha-quiz-results > p {
+	color: var(--nf-muted, #8a8190);
+}
+
+.nafha-quiz-results .products {
+	margin-block: 28px;
+}
+
+.nafha-quiz-results .product {
+	position: relative;
+}
+
+.nafha-match {
+	position: absolute;
+	inset-block-start: 10px;
+	inset-inline-start: 10px;
+	z-index: 2;
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: var(--nf-ink, #2b2130);
+	color: #fff;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.nafha-quiz-results__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.button.nafha-button-outline {
+	border: 1px solid var(--nf-ink, #2b2130);
+	background: transparent;
+	color: var(--nf-ink, #2b2130);
+}
+
+.button.nafha-button-outline:hover {
+	background: var(--nf-ink, #2b2130);
+	color: #fff;
+}

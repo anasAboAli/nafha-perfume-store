@@ -345,3 +345,20 @@ a[href^="tel:"] {
 	direction: ltr;
 	text-align: right;
 }
+
+/* ------------------------------------------------- sample offer hint */
+
+.nafha-offer-hint {
+	margin: 0 0 16px;
+	padding: 10px 14px;
+	border: 1px dashed var(--nf-gold);
+	border-radius: var(--nf-radius);
+	color: var(--nf-ink);
+	font-size: 14px;
+}
+
+.nafha-offer-hint.is-active {
+	border-style: solid;
+	background: #f0faf3;
+	border-color: #bfe5cc;
+}

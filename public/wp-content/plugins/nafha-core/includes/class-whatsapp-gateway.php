@@ -109,6 +109,9 @@ final class Nafha_Gateway_WhatsApp extends WC_Payment_Gateway {
 		}
 		$lines[] = '';
 		$lines[] = __( 'Shipping', 'nafha-core' ) . ': ' . ( (float) $order->get_shipping_total() > 0 ? $plain( wc_price( $order->get_shipping_total(), array( 'currency' => $order->get_currency() ) ) ) : __( 'Free', 'nafha-core' ) );
+		foreach ( $order->get_fees() as $fee ) { // E.g. the sample quantity discount.
+			$lines[] = $fee->get_name() . ': ' . $plain( wc_price( $fee->get_total(), array( 'currency' => $order->get_currency() ) ) );
+		}
 		if ( (float) $order->get_discount_total() > 0 ) {
 			$lines[] = __( 'Discount', 'nafha-core' ) . ': -' . $plain( wc_price( $order->get_discount_total(), array( 'currency' => $order->get_currency() ) ) );
 		}

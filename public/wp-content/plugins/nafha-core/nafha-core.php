@@ -43,6 +43,8 @@ function nafha_core_boot() {
 		'class-cart.php',
 		'class-checkout.php',
 		'class-whatsapp-gateway.php',
+		'class-quiz.php',
+		'class-offers.php',
 	);
 
 	foreach ( $modules as $module ) {

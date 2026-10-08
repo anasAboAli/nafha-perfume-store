@@ -116,9 +116,44 @@ function sizes( p ) {
 </svg>`;
 }
 
+/**
+ * Gift set: an open box (lid behind) holding one vial per perfume, each in its own colour.
+ */
+function giftbox( p ) {
+	const { colors, labels } = p.giftset;
+	const vialW = 120;
+	const vialH = 290;
+	const gap = 40;
+	const start = 500 - ( colors.length * vialW + ( colors.length - 1 ) * gap ) / 2;
+	const vials = colors.map( ( color, i ) => {
+		const x = start + i * ( vialW + gap );
+		const local = { ...p, color };
+		const label = `
+			<rect x="${ x + 14 }" y="${ 470 + 120 }" width="${ vialW - 28 }" height="56" rx="6" fill="#FBF8F4" opacity=".95"/>
+			<text x="${ x + vialW / 2 }" y="${ 470 + 156 }" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="${ fit( labels[ i ], vialW - 40, 20, 0.55 ) }" fill="#2b2130">${ esc( labels[ i ] ) }</text>`;
+		// Each vial needs its own liquid gradient id.
+		return defs( local ).replace( /id="(\w+)"/g, `id="$1${ i }"` ) +
+			vial( x, 470, vialW, vialH, { label } ).replace( /url\(#(\w+)\)/g, `url(#$1${ i })` );
+	} ).join( '' );
+	const nameSize = fit( p.name_en, 700, 44, 0.5 );
+
+	return `<svg xmlns="http://www.w3.org/2000/svg" width="${ SIZE }" height="${ SIZE }" viewBox="0 0 ${ SIZE } ${ SIZE }">
+	${ defs( p ) }
+	<rect width="100%" height="100%" fill="#F3EDE4"/>
+	<text x="500" y="140" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="6" fill="#9a7647">NAFHA</text>
+	<text x="500" y="${ 150 + nameSize + 10 }" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="${ nameSize }" fill="#2b2130">${ esc( p.name_en ) }</text>
+	<rect x="150" y="330" width="700" height="150" rx="14" fill="#2b2130" opacity=".92"/>
+	<rect x="150" y="330" width="700" height="150" rx="14" fill="none" stroke="#b08a57" stroke-width="3"/>
+	${ vials }
+	<rect x="120" y="700" width="760" height="190" rx="16" fill="#2b2130"/>
+	<rect x="120" y="700" width="760" height="10" fill="#b08a57"/>
+	<text x="500" y="815" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="8" fill="#c9a46c">NAFHA · DECANTS</text>
+</svg>`;
+}
+
 ( async () => {
 	for ( const p of products ) {
-		const jobs = [ [ '1', hero( p ) ] ];
+		const jobs = [ [ '1', p.giftset ? giftbox( p ) : hero( p ) ] ];
 		if ( p.type !== 'simple' ) {
 			jobs.push( [ '2', sizes( p ) ] );
 		}
