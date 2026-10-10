@@ -191,6 +191,19 @@ return array(
 		"Add %1\$d more sample and get %2\$d%% off your samples\0Add %1\$d more samples and get %2\$d%% off your samples" => "أضف %1\$d عينات واحصل على خصم %2\$d%% على العينات\0أضف عينة واحدة فقط واحصل على خصم %2\$d%% على العينات\0أضف عينتين واحصل على خصم %2\$d%% على العينات\0أضف %1\$d عينات واحصل على خصم %2\$d%% على العينات\0أضف %1\$d عينة واحصل على خصم %2\$d%% على العينات\0أضف %1\$d عينة واحصل على خصم %2\$d%% على العينات",
 		'%d%% sample discount applied' => 'تم تطبيق خصم %d%% على العينات',
 
+		// Tracking & consent.
+		'Tracking'              => 'التتبع',
+		'Google Analytics 4, Meta and TikTok pixels are added inside Google Tag Manager; the site already sends the e-commerce events. See docs/TRACKING.md.' => 'تُضاف Google Analytics 4 وبكسل ميتا وتيك توك من داخل Google Tag Manager، والموقع يرسل أحداث التجارة الإلكترونية جاهزة. التفاصيل في docs/TRACKING.md.',
+		'Google Tag Manager container ID' => 'معرّف حاوية Google Tag Manager',
+		'e.g. GTM-ABC1234. Leave empty to disable.' => 'مثال: GTM-ABC1234. اتركه فارغًا للتعطيل.',
+		'Cookie consent bar'    => 'شريط موافقة الكوكيز',
+		'Ask visitors before analytics and advertising cookies are used (Google Consent Mode).' => 'اطلب موافقة الزوار قبل استخدام ملفات التحليل والإعلانات (وضع الموافقة من Google).',
+		'Cookie consent'        => 'موافقة الكوكيز',
+		'We use cookies to improve your experience and measure site and ad performance.' => 'نستخدم ملفات تعريف الارتباط لتحسين تجربتك وقياس أداء الموقع والإعلانات.',
+		'Privacy policy'        => 'سياسة الخصوصية',
+		'Accept'                => 'موافق',
+		'Essential only'        => 'الضرورية فقط',
+
 		// Import / export.
 		'Brands'                => 'العلامات التجارية',
 

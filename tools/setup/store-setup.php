@@ -669,7 +669,7 @@ set_theme_mod(
 			'style'    => 'simple',
 			'__id'     => 'nafha-brand',
 		),
-		array( 'id' => 'product_title', 'enabled' => true ),
+		array( 'id' => 'product_title', 'enabled' => true, 'heading_tag' => 'h3' ), // h3: cards sit under section h2s.
 		array( 'id' => 'product_rating', 'enabled' => true ),
 		array( 'id' => 'product_price', 'enabled' => true ),
 		array( 'id' => 'product_desc', 'enabled' => false ),
@@ -683,6 +683,140 @@ set_theme_mod(
 delete_transient( 'blocksy_dynamic_styles_descriptor' );
 
 nafha_setup_log( 'palette, header, footer' );
+
+/* --------------------------------------------------------------------- SEO */
+
+WP_CLI::log( 'SEO (Rank Math)' );
+
+require_once ABSPATH . 'wp-admin/includes/file.php';
+require_once ABSPATH . 'wp-admin/includes/media.php';
+require_once ABSPATH . 'wp-admin/includes/image.php';
+
+// Site icon (browser tab, Google results, Rank Math's organisation logo) from the child theme's PNG.
+$icon_id = (int) get_option( 'site_icon' );
+if ( ! $icon_id || ! get_post( $icon_id ) ) {
+	$tmp = wp_tempnam( 'nafha-icon.png' );
+	copy( get_stylesheet_directory() . '/assets/img/icon-512.png', $tmp );
+	$icon_id = media_handle_sideload( array( 'name' => 'nafha-icon.png', 'tmp_name' => $tmp ), 0, 'نفحة' );
+	update_option( 'site_icon', $icon_id );
+}
+
+if ( defined( 'RANK_MATH_VERSION' ) ) {
+	// Only what the store uses: sitemap, structured data, WooCommerce SEO. (Analytics/AI/link counter add weight.)
+	update_option( 'rank_math_modules', array( 'sitemap', 'rich-snippet', 'woocommerce' ) );
+
+	$hero_id = (int) get_option( 'nafha_home_hero_id' );
+	$titles  = array_merge(
+		get_option( 'rank-math-options-titles', array() ),
+		array(
+			'title_separator'            => '|',
+			'knowledgegraph_type'        => 'company',
+			'knowledgegraph_name'        => 'نفحة',
+			'website_name'               => 'نفحة',
+			'knowledgegraph_logo'        => wp_get_attachment_url( $icon_id ),
+			'knowledgegraph_logo_id'     => $icon_id,
+			'open_graph_image'           => $hero_id ? wp_get_attachment_url( $hero_id ) : '',
+			'open_graph_image_id'        => $hero_id,
+			'homepage_title'             => 'نفحة %sep% عطور أصلية بالتقسيم في قطر — عينات 5 و10 و30 مل',
+			'homepage_description'       => 'جرّب أشهر العطور العالمية والعربية بعينات أصلية 5 و10 و30 مل قبل شراء العبوة الكاملة. توصيل سريع لكل مناطق قطر وتوصيل مجاني فوق $60.',
+			'pt_product_title'           => '%title% %sep% عطور أصلية بالتقسيم %sep% %sitename%',
+			'pt_product_description'     => '%excerpt%',
+			'tax_product_cat_title'      => '%term% بالتقسيم %sep% %sitename%',
+			'tax_product_cat_description' => '%term_description%',
+			'tax_product_brand_title'    => 'عطور %term% الأصلية بالتقسيم %sep% %sitename%',
+			'tax_product_brand_description' => '%term_description%',
+			'noindex_search'             => 'on',
+			'noindex_empty_taxonomies'   => 'on',
+		)
+	);
+	update_option( 'rank-math-options-titles', $titles );
+
+	update_option(
+		'rank-math-options-sitemap',
+		array_merge(
+			get_option( 'rank-math-options-sitemap', array() ),
+			array(
+				'authors_sitemap'           => 'off',
+				'html_sitemap'              => 'off',
+				'pt_product_sitemap'        => 'on',
+				'pt_page_sitemap'           => 'on',
+				'tax_product_cat_sitemap'   => 'on',
+				'tax_product_brand_sitemap' => 'on',
+				'include_images'            => 'on',
+				'exclude_roles'             => array( 'contributor', 'subscriber', 'customer', 'shop_manager', 'administrator', 'author', 'editor' ),
+			)
+		)
+	);
+
+	// Keep crawlers out of the cart/checkout and the infinite filter combinations (filtered pages
+	// already point their canonical at the unfiltered archive).
+	$robots = implode(
+		"\n",
+		array(
+			'User-agent: *',
+			'Disallow: /wp-admin/',
+			'Allow: /wp-admin/admin-ajax.php',
+			'Disallow: /cart/',
+			'Disallow: /checkout/',
+			'Disallow: /my-account/',
+			'Disallow: /*?*add-to-cart=',
+			'Disallow: /*?*filter_',
+			'Disallow: /*?*min_price=',
+			'Disallow: /*?*orderby=',
+			'',
+			'Sitemap: ' . home_url( '/sitemap_index.xml' ),
+		)
+	);
+	update_option(
+		'rank-math-options-general',
+		array_merge(
+			get_option( 'rank-math-options-general', array() ),
+			array(
+				'robots_txt_content' => $robots,
+				'breadcrumbs'        => 'off', // Blocksy renders breadcrumbs (with schema) already.
+				'product_brand'      => 'product_brand', // Brand in Product schema = WooCommerce Brands.
+			)
+		)
+	);
+
+	// No setup wizard / account-connect nags for the client.
+	update_option( 'rank_math_wizard_completed', true );
+	update_option( 'rank_math_registration_skip', true );
+	// Static front page: Rank Math reads the page's own SEO fields, not homepage_title.
+	$front = (int) get_option( 'page_on_front' );
+	update_post_meta( $front, 'rank_math_title', $titles['homepage_title'] );
+	update_post_meta( $front, 'rank_math_description', $titles['homepage_description'] );
+
+	// Shop page: a descriptive title instead of "Shop | Nafha".
+	$shop_page = (int) get_option( 'woocommerce_shop_page_id' );
+	update_post_meta( $shop_page, 'rank_math_title', 'تسوّق العطور الأصلية بالتقسيم %sep% %sitename%' );
+	update_post_meta( $shop_page, 'rank_math_description', 'عطور رجالية ونسائية وللجنسين من أشهر الماركات بعينات 5 و10 و30 مل وعبوات كاملة. فلترة حسب العائلة العطرية والموسم والسعر، وتوصيل سريع في قطر.' );
+
+	nafha_setup_log( 'Rank Math: modules, titles, sitemap, robots.txt' );
+} else {
+	WP_CLI::warning( 'Rank Math is not active — SEO options skipped.' );
+}
+
+// Brand archives are landing pages for "عطور ديور" style searches: give each a description.
+$brand_descriptions = array(
+	'dior'                     => 'عطور ديور الأصلية بالتقسيم: سوفاج، جادور وغيرها بعينات 5 و10 و30 مل، لتجرب أيقونات الدار الفرنسية قبل شراء العبوة الكاملة.',
+	'chanel'                   => 'عطور شانيل الأصلية بالتقسيم: بلو دو شانيل، كوكو مدموازيل وغيرها بعينات أصلية مع توصيل سريع في قطر.',
+	'tom-ford'                 => 'عطور توم فورد الفاخرة بالتقسيم، من عود وود إلى مجموعة العطور الخاصة، بعينات تناسب التجربة قبل الشراء.',
+	'creed'                    => 'عطور كريد الأصلية بالتقسيم، وعلى رأسها أفينتوس، بعينات 5 و10 و30 مل وتوصيل سريع في قطر.',
+	'yves-saint-laurent'       => 'عطور إيف سان لوران الأصلية بالتقسيم، مثل ليبر، بعينات تجربة بأسعار مناسبة.',
+	'giorgio-armani'           => 'عطور جورجيو أرماني الأصلية بالتقسيم، مثل أكوا دي جيو، بعينات منعشة مثالية لصيف قطر.',
+	'maison-francis-kurkdjian' => 'عطور ميزون فرانسيس كركدجيان بالتقسيم، وأشهرها باكارات روج 540، بعينات أصلية تجربها قبل العبوة الكاملة.',
+	'parfums-de-marly'         => 'عطور بارفان دي مارلي الأصلية بالتقسيم، مثل لايتون، بعينات 5 و10 و30 مل.',
+	'amouage'                  => 'عطور أمواج العُمانية الفاخرة بالتقسيم، مثل إنترلود مان، لعشّاق العطور الشرقية القوية.',
+	'lattafa'                  => 'عطور لطافة العربية الأصلية، مثل خمرة، بعبوات كاملة وأسعار مميزة.',
+);
+foreach ( $brand_descriptions as $slug => $description ) {
+	$term = get_term_by( 'slug', $slug, 'product_brand' );
+	if ( $term && '' === trim( $term->description ) ) {
+		wp_update_term( $term->term_id, 'product_brand', array( 'description' => $description ) );
+	}
+}
+nafha_setup_log( 'brand descriptions, site icon' );
 
 flush_rewrite_rules( false );
 WP_CLI::success( 'Store setup complete.' );

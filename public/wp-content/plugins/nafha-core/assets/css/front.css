@@ -362,3 +362,63 @@ a[href^="tel:"] {
 	background: #f0faf3;
 	border-color: #bfe5cc;
 }
+
+/* ----------------------------------------------------- cookie consent */
+
+.nafha-consent {
+	position: fixed;
+	inset-inline: 16px;
+	inset-block-end: 16px;
+	z-index: 900;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px 20px;
+	max-inline-size: 760px;
+	margin-inline: auto;
+	padding: 16px 20px;
+	border-radius: var(--nafha-radius-lg, 16px);
+	background: var(--nafha-ink-deep, #1e1722);
+	color: rgb(251 248 244 / 88%);
+	box-shadow: 0 10px 40px rgb(30 23 34 / 30%);
+	font-size: 14px;
+}
+
+.nafha-consent[hidden] {
+	display: none;
+}
+
+.nafha-consent p {
+	flex: 1 1 280px;
+	margin: 0;
+}
+
+.nafha-consent a {
+	color: var(--nafha-gold-soft, #c9a46c);
+}
+
+.nafha-consent__actions {
+	display: flex;
+	gap: 8px;
+}
+
+.nafha-consent .button {
+	min-block-size: 40px;
+}
+
+.nafha-consent .nafha-button-outline {
+	border: 1px solid rgb(255 255 255 / 50%);
+	background: transparent;
+	color: #fff;
+}
+
+@media (max-width: 999.98px) {
+	.nafha-consent {
+		inset-block-end: calc(var(--nafha-bnav-height, 64px) + env(safe-area-inset-bottom) + 10px);
+	}
+}
+
+.nafha-consent [data-nafha-consent="granted"] {
+	background: var(--nafha-gold-soft, #c9a46c);
+	color: var(--nafha-ink-deep, #1e1722);
+}

@@ -52,4 +52,7 @@ Demo products are flagged with `_nafha_demo` — see the header of `tools/setup/
 | `class-offers.php` | Discovery box builder `[nafha_discovery_box]` (discounted box of 3/5 decants) and sample quantity discount |
 | `class-reviews-showcase.php` | `[nafha_reviews]` — latest real 4–5★ reviews for the home page |
 | `class-import-export.php` | "Brands" column for the product CSV importer/exporter |
+| `class-seo.php` | Product schema name/alternateName fix on top of Rank Math |
+| `class-tracking.php` | GTM container, GA4 e-commerce dataLayer events, Consent Mode v2 + consent bar ([docs/TRACKING.md](docs/TRACKING.md)) |
+| `class-product-feed.php` | Google Merchant / Meta Catalog feed at `/feed/nafha-products/` |
 | `class-search.php` | Normalised product search index (Arabic variants, English names, brands + aliases, notes); `wp nafha reindex` |

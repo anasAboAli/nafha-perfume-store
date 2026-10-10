@@ -100,6 +100,7 @@ foreach ( $nafha_products as $i => $data ) {
 	$product->set_featured( ! empty( $data['featured'] ) );
 	$product->set_reviews_allowed( true );
 	$product->set_menu_order( $i );
+	$product->set_sku( $data['slug'] ); // Parents too: tracking and feeds identify products by SKU.
 	$product->set_category_ids(
 		array_filter( array_map( static fn( $slug ) => get_term_by( 'slug', $slug, 'product_cat' )->term_id ?? 0, $data['categories'] ) )
 	);
@@ -132,7 +133,6 @@ foreach ( $nafha_products as $i => $data ) {
 	$product->set_gallery_image_ids( $gallery );
 
 	if ( $is_simple ) {
-		$product->set_sku( $data['slug'] );
 		$product->set_regular_price( (string) $data['price'] );
 		$product->set_manage_stock( true );
 		$product->set_stock_quantity( $data['stock_qty'] ?? NAFHA_DEMO_STOCK );

@@ -47,6 +47,9 @@ function nafha_core_boot() {
 		'class-offers.php',
 		'class-reviews-showcase.php',
 		'class-import-export.php',
+		'class-seo.php',
+		'class-tracking.php',
+		'class-product-feed.php',
 	);
 
 	foreach ( $modules as $module ) {

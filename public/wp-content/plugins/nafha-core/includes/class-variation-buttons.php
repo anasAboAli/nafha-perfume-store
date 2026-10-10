@@ -27,6 +27,14 @@ final class Nafha_Variation_Buttons {
 		$args['class'] = trim( ( $args['class'] ?? '' ) . ' nafha-swatch-select' );
 
 		if ( empty( $args['selected'] ) && $args['product'] instanceof WC_Product_Variable ) {
+			// WooCommerce fills "selected" after this filter, from the URL (?attribute_pa_size=10ml,
+			// used by the product feed and ads) or the product's default size. Only fall back to
+			// the first in-stock size when neither exists.
+			$key = 'attribute_' . sanitize_title( $args['attribute'] );
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only preselection.
+			if ( ! empty( $_REQUEST[ $key ] ) || $args['product']->get_variation_default_attribute( $args['attribute'] ) ) {
+				return $args;
+			}
 			$options = self::option_data( $args['product'], $args['attribute'] );
 			foreach ( $args['options'] as $option ) {
 				if ( ! empty( $options[ $option ]['in_stock'] ) ) {
