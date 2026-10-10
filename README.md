@@ -1,7 +1,26 @@
 # Nafha | نفحة — perfume decant store
 
-WooCommerce store for perfume decants (5/10/30 ml + full bottles + gift boxes), Arabic RTL, mobile-first.
-Requirements: [docs/requirements.pdf](docs/requirements.pdf) · Plan: [docs/PLAN.md](docs/PLAN.md)
+An Arabic (RTL), mobile-first WooCommerce store for perfume decants — 5/10/30 ml samples split from original bottles, full bottles and gift sets — with delivery across Qatar.
+Built on WordPress + WooCommerce + Blocksy, with a custom plugin (`nafha-core`) instead of a stack of third-party plugins.
+
+**Live:** _link added after publishing_ · Requirements: [docs/requirements.pdf](docs/requirements.pdf) · Plan: [docs/PLAN.md](docs/PLAN.md)
+
+| Home | Product | Fragrance quiz | Side cart |
+|---|---|---|---|
+| ![Home](docs/screenshots/home-mobile.webp) | ![Product](docs/screenshots/product-mobile.webp) | ![Quiz](docs/screenshots/quiz-mobile.webp) | ![Cart](docs/screenshots/cart-mobile.webp) |
+
+![Shop on desktop](docs/screenshots/shop-desktop.webp)
+
+### Highlights
+- **Size buttons with live per-size price**, stock warnings, fragrance profile (notes, longevity, sillage).
+- **AJAX filters** with live counts, and **Arabic-aware search** (spelling variants, English names, brand aliases, notes).
+- **"Which perfume suits you?" quiz** with match percentages, **discovery box** builder (3 or 5 samples, tiered discount).
+- **Short checkout** for Qatar (areas drive delivery price, phone validation to `+974…`), cash on delivery, and **order via WhatsApp** (order saved, then WhatsApp opens with the full summary).
+- **Side cart** with a free-delivery progress bar, photo reviews, GTM + GA4 e-commerce events with Consent Mode v2, product feed for Google/Meta.
+- **Quality:** Lighthouse mobile 90 performance / 100 accessibility, SEO, best practices; 24 Playwright end-to-end tests on WebKit (iPhone), Chromium (Android) and desktop; every string translated (checked automatically).
+
+### Stack
+WordPress 7.1 · WooCommerce 11.2 · Blocksy + child theme · PHP 8.2 · Rank Math · Cloudflare Turnstile · Playwright · Lighthouse
 
 ## Local environment (XAMPP)
 | | |
@@ -17,7 +36,7 @@ Start services: run XAMPP Control Panel → start **Apache** and **MySQL**.
 - `public/` — WordPress install (core is not committed)
 - `public/wp-content/themes/nafha-child/` — child theme of Blocksy (presentation only)
 - `public/wp-content/plugins/nafha-core/` — store features (custom fields, WhatsApp order, quiz, side cart, tracking…)
-- `docs/` — requirements, plan, [deployment checklist](docs/DEPLOY.md), plugin list, [bulk import guide](docs/IMPORT-GUIDE.md) + sample CSV
+- `docs/` — requirements, plan, [deployment checklist](docs/DEPLOY.md), [free hosting guide](docs/DEPLOY-FREE.md), plugin list, [bulk import guide](docs/IMPORT-GUIDE.md) + sample CSV
 
 ## Common commands (Git Bash, from the project root)
 | Task | Command |
@@ -32,6 +51,8 @@ Start services: run XAMPP Control Panel → start **Apache** and **MySQL**.
 | Browser tests (iPhone/WebKit, Android/Chromium, desktop Chromium; `npx playwright install` once) | `(cd tools && npx playwright test -c e2e --project=webkit-iphone --project=chromium-android --project=chromium-desktop)` |
 | Scan pages for untranslated words | `(cd tools && node e2e/i18n-scan.js)` |
 | Remove e2e test orders + reset demo stock | `tools/wp.sh eval-file tools/e2e/cleanup.php` |
+| Portfolio screenshots → `docs/screenshots/` | `(cd tools && node e2e/screenshots.js)` |
+| Build the upload package for the live site → `dist/` | `tools/deploy/build.sh https://site [admin-email]` |
 
 Local e-mails are not sent: `mu-plugins/nafha-local-mail.php` saves them to `wp-content/uploads/nafha-mail/` (only when `WP_ENVIRONMENT_TYPE` is `local`).
 
