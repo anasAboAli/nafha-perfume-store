@@ -276,7 +276,7 @@ final class Nafha_Fragrance_Profile {
 					<?php foreach ( $meters as $meter ) : ?>
 						<div class="nafha-meter">
 							<span class="nafha-meter__label"><?php echo esc_html( $meter[0] ); ?></span>
-							<span class="nafha-meter__bar" role="meter" aria-valuemin="1" aria-valuemax="5" aria-valuenow="<?php echo esc_attr( $meter[1] ); ?>" aria-valuetext="<?php echo esc_attr( $meter[2] ); ?>">
+							<span class="nafha-meter__bar" role="meter" aria-label="<?php echo esc_attr( $meter[0] ); ?>" aria-valuemin="1" aria-valuemax="5" aria-valuenow="<?php echo esc_attr( $meter[1] ); ?>" aria-valuetext="<?php echo esc_attr( $meter[2] ); ?>">
 								<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
 									<span class="nafha-meter__seg<?php echo $i <= $meter[1] ? ' is-on' : ''; ?>"></span>
 								<?php endfor; ?>

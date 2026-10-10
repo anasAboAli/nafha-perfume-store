@@ -4,10 +4,10 @@
 
 :root {
 	--nf-ink: var(--nafha-ink, #2b2130);
-	--nf-gold: var(--nafha-gold, #b08a57);
+	--nf-gold: var(--nafha-gold, #8a6a3f);
 	--nf-line: var(--nafha-line, #e7ded2);
 	--nf-sand: var(--nafha-sand, #f3ede4);
-	--nf-muted: var(--nafha-muted, #8a8190);
+	--nf-muted: var(--nafha-muted, #6e6577);
 	--nf-radius: var(--nafha-radius, 10px);
 }
 

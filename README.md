@@ -7,7 +7,7 @@ Requirements: [docs/requirements.pdf](docs/requirements.pdf) · Plan: [docs/PLAN
 | | |
 |---|---|
 | Site | http://localhost:8080 (Apache vhost `C:\xampp\apache\conf\extra\perfume-store.conf`) |
-| Admin | http://localhost:8080/wp-admin — credentials in `.local-credentials.txt` (git-ignored) |
+| Admin | http://localhost:8080/nafha-login/ — credentials in `.local-credentials.txt` (git-ignored) |
 | DB | MariaDB `perfume_store`, user `root`, no password |
 | WP-CLI | `tools/wp.sh <command>` (from Git Bash) |
 
@@ -17,7 +17,7 @@ Start services: run XAMPP Control Panel → start **Apache** and **MySQL**.
 - `public/` — WordPress install (core is not committed)
 - `public/wp-content/themes/nafha-child/` — child theme of Blocksy (presentation only)
 - `public/wp-content/plugins/nafha-core/` — store features (custom fields, WhatsApp order, quiz, side cart, tracking…)
-- `docs/` — requirements, plan, plugin list, [bulk import guide](docs/IMPORT-GUIDE.md) + sample CSV
+- `docs/` — requirements, plan, [deployment checklist](docs/DEPLOY.md), plugin list, [bulk import guide](docs/IMPORT-GUIDE.md) + sample CSV
 
 ## Common commands (Git Bash, from the project root)
 | Task | Command |
@@ -27,6 +27,7 @@ Start services: run XAMPP Control Panel → start **Apache** and **MySQL**.
 | Import / update demo products | `tools/wp.sh eval-file tools/setup/demo-products.php` |
 | Write home page + static pages (OVERWRITES page content — run once) | `(cd tools && node images/hero.js)` then `tools/wp.sh eval-file tools/setup/content.php` |
 | Rebuild the product search index | `tools/wp.sh nafha reindex` |
+| Lighthouse (mobile) on key pages | `tools/lighthouse.sh <label>` |
 | Check Arabic translations are complete | `/c/xampp/php/php.exe tools/check-translations.php` |
 
 Local e-mails are not sent: `mu-plugins/nafha-local-mail.php` saves them to `wp-content/uploads/nafha-mail/` (only when `WP_ENVIRONMENT_TYPE` is `local`).
@@ -55,4 +56,5 @@ Demo products are flagged with `_nafha_demo` — see the header of `tools/setup/
 | `class-seo.php` | Product schema name/alternateName fix on top of Rank Math |
 | `class-tracking.php` | GTM container, GA4 e-commerce dataLayer events, Consent Mode v2 + consent bar ([docs/TRACKING.md](docs/TRACKING.md)) |
 | `class-product-feed.php` | Google Merchant / Meta Catalog feed at `/feed/nafha-products/` |
+| `class-performance.php` | jQuery chain to footer, inline small CSS, LCP image priority, WebP thumbnails, no emoji/unused assets |
 | `class-search.php` | Normalised product search index (Arabic variants, English names, brands + aliases, notes); `wp nafha reindex` |

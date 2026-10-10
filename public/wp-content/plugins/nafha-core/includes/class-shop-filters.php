@@ -30,6 +30,7 @@ final class Nafha_Shop_Filters {
 
 	public static function register() {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue' ) );
+		add_action( 'woocommerce_before_shop_loop', array( __CLASS__, 'render_list_heading' ), 5 );
 		add_action( 'woocommerce_before_shop_loop', array( __CLASS__, 'render_toggle' ), 25 );
 		add_action( 'woocommerce_before_shop_loop', array( __CLASS__, 'render_chips' ), 40 );
 		add_action( 'woocommerce_no_products_found', array( __CLASS__, 'render_toggle' ), 5 );
@@ -365,6 +366,13 @@ final class Nafha_Shop_Filters {
 	}
 
 	/* ----------------------------------------------------------- render */
+
+	/**
+	 * Screen-reader heading between the page title (h1) and the product cards (h3).
+	 */
+	public static function render_list_heading() {
+		printf( '<h2 class="screen-reader-text">%s</h2>', esc_html__( 'Products', 'nafha-core' ) );
+	}
 
 	public static function render_toggle() {
 		if ( ! self::is_filterable_page() || ! self::state()['groups'] ) {

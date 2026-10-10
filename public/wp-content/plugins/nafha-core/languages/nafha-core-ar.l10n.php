@@ -75,6 +75,7 @@ return array(
 
 		// Shop filters & sorting.
 		'Filter'                => 'فلترة',
+		'Products'              => 'المنتجات',
 		'Gender'                => 'الجنس',
 		'Brand'                 => 'العلامة التجارية',
 		'Concentration'         => 'التركيز',

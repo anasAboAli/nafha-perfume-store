@@ -62,11 +62,11 @@
 :root {
 	--nafha-ink: #2b2130;
 	--nafha-ink-deep: #1e1722;
-	--nafha-gold: #b08a57;
+	--nafha-gold: #8a6a3f; /* 4.8:1 on ivory — also used for text (brand names, kickers). */
 	--nafha-gold-soft: #c9a46c;
 	--nafha-gold-hover: #9a7647;
 	--nafha-text: #4f4754;
-	--nafha-muted: #8a8190;
+	--nafha-muted: #6e6577; /* 5.3:1 on ivory. */
 	--nafha-line: #e7ded2;
 	--nafha-sand: #f3ede4;
 	--nafha-ivory: #fbf8f4;
@@ -642,4 +642,25 @@ button[type="submit"],
 
 .entry-content h3 {
 	font-size: clamp(18px, 3vw, 21px);
+}
+
+/* -------------------------------------------------------- accessibility */
+
+/* The rating text inside the stars is clipped from view but must still meet contrast. */
+.star-rating > span {
+	color: var(--nafha-ink);
+}
+
+/* Links inside running text are underlined, not told apart by colour alone. */
+.entry-content p a,
+.entry-content li a,
+.nafha-consent a {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+/* Product meta (SKU, category, brand): Blocksy fades it below readable contrast. */
+.product .entry-summary-items .product_meta > span > * {
+	opacity: 1; /* Blocksy: .7 on these children. */
+	color: var(--nafha-text);
 }

@@ -818,5 +818,108 @@ foreach ( $brand_descriptions as $slug => $description ) {
 }
 nafha_setup_log( 'brand descriptions, site icon' );
 
+/* ------------------------------------------------- performance & security */
+
+WP_CLI::log( 'Performance & security' );
+
+// WooCommerce order attribution loads two scripts on every page; GA4 already reports traffic sources.
+update_option( 'woocommerce_feature_order_attribution_enabled', 'no' );
+
+// Server rules (Apache / LiteSpeed): compression, long browser cache for static files,
+// security headers, and no access to xmlrpc.php or sensitive files.
+require_once ABSPATH . 'wp-admin/includes/misc.php';
+$htaccess_rules = array(
+	'<IfModule mod_deflate.c>',
+	'<IfModule mod_filter.c>', // AddOutputFilterByType lives in mod_filter; a missing module must not 500 the site.
+	'	AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/xml application/rss+xml application/javascript text/javascript application/json image/svg+xml',
+	'</IfModule>',
+	'</IfModule>',
+	'<IfModule mod_expires.c>',
+	'	ExpiresActive On',
+	'	ExpiresByType text/css "access plus 1 year"',
+	'	ExpiresByType application/javascript "access plus 1 year"',
+	'	ExpiresByType image/webp "access plus 1 year"',
+	'	ExpiresByType image/png "access plus 1 year"',
+	'	ExpiresByType image/jpeg "access plus 1 year"',
+	'	ExpiresByType image/svg+xml "access plus 1 year"',
+	'	ExpiresByType font/woff2 "access plus 1 year"',
+	'</IfModule>',
+	'<IfModule mod_headers.c>',
+	'	# Versioned assets (?ver=) can be cached forever.',
+	'	<FilesMatch "\.(css|js|woff2|webp|png|jpe?g|svg)$">',
+	'		Header set Cache-Control "public, max-age=31536000, immutable"',
+	'	</FilesMatch>',
+	'	Header always set X-Content-Type-Options "nosniff"',
+	'	Header always set X-Frame-Options "SAMEORIGIN"',
+	'	Header always set Referrer-Policy "strict-origin-when-cross-origin"',
+	'	Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"',
+	'</IfModule>',
+	'<Files xmlrpc.php>',
+	'	Require all denied',
+	'</Files>',
+	'<FilesMatch "^(wp-config\.php|readme\.html|license\.txt|debug\.log)$">',
+	'	Require all denied',
+	'</FilesMatch>',
+	'Options -Indexes',
+);
+$htaccess = ABSPATH . '.htaccess';
+if ( insert_with_markers( $htaccess, 'Nafha', $htaccess_rules ) ) {
+	// Our block must come before WordPress's rewrite block; insert_with_markers appends new blocks at the end.
+	$contents = file_get_contents( $htaccess ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	if ( preg_match( '/# BEGIN Nafha.*?# END Nafha\R?/s', $contents, $block ) && strpos( $contents, '# BEGIN Nafha' ) > strpos( $contents, '# BEGIN WordPress' ) ) {
+		$contents = $block[0] . "\n" . str_replace( $block[0], '', $contents );
+		file_put_contents( $htaccess, $contents ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	}
+	nafha_setup_log( '.htaccess: compression, caching, security headers' );
+} else {
+	WP_CLI::warning( '.htaccess is not writable — add the Nafha rules manually (see docs/DEPLOY.md).' );
+}
+
+// Login URL: /nafha-login/ instead of wp-login.php; /wp-admin for logged-out visitors → 404 (WPS Hide Login).
+update_option( 'whl_page', 'nafha-login' );
+update_option( 'whl_redirect_admin', '404' );
+
+// Wordfence: lock out after 5 failed logins (4 h), instantly for non-existent usernames.
+if ( class_exists( 'wfConfig' ) ) {
+	foreach (
+		array(
+			'loginSecurityEnabled'       => 1,
+			'loginSec_maxFailures'       => 5,
+			'loginSec_maxForgotPasswd'   => 5,
+			'loginSec_countFailMins'     => 240,
+			'loginSec_lockoutMins'       => 240,
+			'loginSec_lockInvalidUsers'  => 1,
+			'loginSec_disableAuthorScan' => 1,
+			'other_hideWPVersion'        => 1,
+			'alertEmails'                => get_option( 'admin_email' ),
+		) as $key => $value
+	) {
+		wfConfig::set( $key, $value );
+	}
+}
+
+// Cloudflare Turnstile on login / register / password reset / reviews — not on checkout (no friction on orders).
+// Local installs get Cloudflare's always-pass TEST keys; production needs the client's keys (docs/DEPLOY.md).
+if ( 'local' === wp_get_environment_type() && ! get_option( 'cfturnstile_key' ) ) {
+	update_option( 'cfturnstile_key', '1x00000000000000000000AA' );
+	update_option( 'cfturnstile_secret', '1x0000000000000000000000000000000AA' );
+	// The plugin only protects forms once keys pass its test (lock-out guard); test keys always pass.
+	update_option( 'cfturnstile_tested', 'yes' );
+}
+foreach ( array( 'cfturnstile_login', 'cfturnstile_register', 'cfturnstile_reset', 'cfturnstile_comment', 'cfturnstile_woo_login', 'cfturnstile_woo_register', 'cfturnstile_woo_reset', 'cfturnstile_defer_scripts' ) as $option ) {
+	update_option( $option, 1 );
+}
+update_option( 'cfturnstile_woo_checkout', 0 );
+update_option( 'cfturnstile_language', 'ar' );
+update_option( 'cfturnstile_appearance', 'interaction-only' ); // Invisible unless Cloudflare needs a click.
+
+// Backups (UpdraftPlus): database daily (keep 14), files weekly (keep 4). Remote storage is connected on the live site.
+update_option( 'updraft_interval_database', 'daily' );
+update_option( 'updraft_retain_db', 14 );
+update_option( 'updraft_interval', 'weekly' );
+update_option( 'updraft_retain', 4 );
+
+nafha_setup_log( 'login URL, Wordfence, Turnstile, backups' );
+
 flush_rewrite_rules( false );
 WP_CLI::success( 'Store setup complete.' );

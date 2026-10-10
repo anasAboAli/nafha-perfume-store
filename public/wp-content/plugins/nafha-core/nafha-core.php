@@ -50,6 +50,7 @@ function nafha_core_boot() {
 		'class-seo.php',
 		'class-tracking.php',
 		'class-product-feed.php',
+		'class-performance.php',
 	);
 
 	foreach ( $modules as $module ) {

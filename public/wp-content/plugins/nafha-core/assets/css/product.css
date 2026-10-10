@@ -5,10 +5,10 @@
 
 .single-product {
 	--np-ink: var(--nafha-ink, #2b2130);
-	--np-gold: var(--nafha-gold, #b08a57);
+	--np-gold: var(--nafha-gold, #8a6a3f);
 	--np-line: var(--nafha-line, #e7ded2);
 	--np-sand: var(--nafha-sand, #f3ede4);
-	--np-muted: var(--nafha-muted, #8a8190);
+	--np-muted: var(--nafha-muted, #6e6577);
 	--np-radius: var(--nafha-radius, 10px);
 }
 
