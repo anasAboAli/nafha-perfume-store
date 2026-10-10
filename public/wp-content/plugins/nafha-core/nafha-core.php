@@ -51,6 +51,7 @@ function nafha_core_boot() {
 		'class-tracking.php',
 		'class-product-feed.php',
 		'class-performance.php',
+		'class-translation-gaps.php',
 	);
 
 	foreach ( $modules as $module ) {

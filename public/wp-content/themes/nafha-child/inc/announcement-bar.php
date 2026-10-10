@@ -78,7 +78,10 @@ function nafha_child_render_announcement() {
 
 	$text = esc_html( get_theme_mod( 'nafha_announcement_text', '' ) );
 	if ( '' === $text ) {
-		$min  = (float) get_option( 'nafha_free_shipping_min', 60 );
+		$min  = class_exists( 'Nafha_Shipping' ) ? Nafha_Shipping::free_shipping_min() : 0; // Follows the shipping zones.
+		if ( $min <= 0 ) {
+			return; // No free shipping configured: nothing to announce unless a custom text is set.
+		}
 		$text = sprintf(
 			/* translators: %s: minimum order amount for free shipping, e.g. "$60". */
 			esc_html__( 'Free delivery across Qatar on orders over %s', 'nafha-child' ),

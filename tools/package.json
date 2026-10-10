@@ -6,6 +6,7 @@
     "images": "node images/generate.js"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.0",
     "lighthouse": "^13.5.0",
     "sharp": "^0.34.0"
   }

@@ -48,7 +48,7 @@ final class Nafha_Cart {
 	 * @return array{min: float, remaining: float, percent: int}|null
 	 */
 	public static function free_shipping_progress() {
-		$min = (float) get_option( 'nafha_free_shipping_min', 0 );
+		$min = Nafha_Shipping::free_shipping_min(); // Follows WooCommerce → Settings → Shipping.
 		if ( $min <= 0 || ! WC()->cart || WC()->cart->is_empty() ) {
 			return null;
 		}

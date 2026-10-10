@@ -99,13 +99,15 @@ final class Nafha_Performance {
 			'ct-page-title-styles'   => get_template_directory() . '/static/bundle/page-title.min.css',
 			'ct-pagination-styles'   => get_template_directory() . '/static/bundle/pagination.min.css',
 			'ct-flexy-styles'        => get_template_directory() . '/static/bundle/flexy.min.css',
+			'photoswipe'             => WC()->plugin_path() . '/assets/css/photoswipe/photoswipe.min.css',
+			'photoswipe-default-skin' => WC()->plugin_path() . '/assets/css/photoswipe/default-skin/default-skin.min.css',
 		);
 		foreach ( $handles as $handle => $path ) {
 			if ( wp_style_is( $handle, 'enqueued' ) && is_readable( $path ) ) {
 				wp_style_add_data( $handle, 'path', $path );
 			}
 		}
-		add_filter( 'styles_inline_size_limit', static fn() => 60000 ); // Bytes, uncompressed; these files total ~45 KB.
+		add_filter( 'styles_inline_size_limit', static fn() => 60000 ); // Bytes, uncompressed; these files total ~50 KB.
 	}
 
 	/**

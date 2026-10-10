@@ -78,6 +78,32 @@ final class Nafha_Settings {
 				'type' => 'sectionend',
 				'id'   => 'nafha_tracking_section',
 			),
+			array(
+				'title' => __( 'Offers', 'nafha-core' ),
+				'desc'  => __( 'Write each rule as count:percent, separated by commas.', 'nafha-core' ),
+				'type'  => 'title',
+				'id'    => 'nafha_offers_section',
+			),
+			array(
+				'title'             => __( 'Discovery box discounts', 'nafha-core' ),
+				'desc'              => __( 'Box sizes offered and their discount, e.g. 3:10, 5:20 (3 perfumes −10%, 5 perfumes −20%).', 'nafha-core' ),
+				'id'                => 'nafha_box_discounts',
+				'type'              => 'text',
+				'default'           => '3:10, 5:20',
+				'custom_attributes' => array( 'dir' => 'ltr' ),
+			),
+			array(
+				'title'             => __( 'Sample quantity discounts', 'nafha-core' ),
+				'desc'              => __( 'Discount on 5/10 ml samples bought outside a box, e.g. 3:10, 5:15. Leave empty to turn the offer off.', 'nafha-core' ),
+				'id'                => 'nafha_sample_tiers',
+				'type'              => 'text',
+				'default'           => '3:10, 5:15',
+				'custom_attributes' => array( 'dir' => 'ltr' ),
+			),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'nafha_offers_section',
+			),
 		);
 	}
 
@@ -98,6 +124,12 @@ final class Nafha_Settings {
 		WC_Admin_Settings::save_fields( self::fields() );
 		update_option( 'nafha_whatsapp_number', self::whatsapp_number() );
 		update_option( 'nafha_gtm_id', self::gtm_id() ); // Drop anything that is not a container ID.
+
+		// Store offer rules in their canonical "3:10, 5:20" form (invalid pairs dropped).
+		foreach ( array( 'nafha_box_discounts', 'nafha_sample_tiers' ) as $option ) {
+			$rules = Nafha_Offers::parse_rules( get_option( $option, '' ) );
+			update_option( $option, implode( ', ', array_map( static fn( $count, $pct ) => "{$count}:{$pct}", array_keys( $rules ), $rules ) ) );
+		}
 	}
 }
 

@@ -22,14 +22,42 @@ final class Nafha_Offers {
 	const SHORTCODE = 'nafha_discovery_box';
 	const CART_KEY  = 'nafha_box';
 
-	/** Box size (number of perfumes) => discount %. */
+	/** Defaults — editable in WooCommerce → Settings → Nafha (see boxes()). Box size => discount %. */
 	const BOXES = array( 3 => 10, 5 => 20 );
 
 	/** Sizes a box can be built from. */
 	const BOX_SIZES = array( '5ml', '10ml' );
 
-	/** Samples (outside boxes) in the cart => discount %. */
+	/** Defaults — editable in WooCommerce → Settings → Nafha (see tiers()). Samples in cart => discount %. */
 	const QUANTITY_TIERS = array( 3 => 10, 5 => 15 );
+
+	/**
+	 * Parse "3:10, 5:20" into [3 => 10, 5 => 20] (count => percent), sorted by count.
+	 *
+	 * @return array<int, int>
+	 */
+	public static function parse_rules( $raw ) {
+		$rules = array();
+		foreach ( preg_split( '/[,،\s]+/u', (string) $raw ) as $pair ) {
+			if ( preg_match( '/^(\d+):(\d+)$/', trim( $pair ), $m ) && (int) $m[1] > 1 && (int) $m[2] > 0 && (int) $m[2] < 100 ) {
+				$rules[ (int) $m[1] ] = (int) $m[2];
+			}
+		}
+		ksort( $rules );
+		return $rules;
+	}
+
+	/** @return array<int, int> Box size => discount %. */
+	public static function boxes() {
+		$rules = self::parse_rules( get_option( 'nafha_box_discounts', '' ) );
+		return $rules ? $rules : self::BOXES;
+	}
+
+	/** @return array<int, int> Samples in cart => discount % (empty = offer off). */
+	public static function tiers() {
+		$raw = get_option( 'nafha_sample_tiers', null );
+		return null === $raw ? self::QUANTITY_TIERS : self::parse_rules( $raw );
+	}
 
 	public static function register() {
 		add_shortcode( self::SHORTCODE, array( __CLASS__, 'render_builder' ) );
@@ -64,7 +92,7 @@ final class Nafha_Offers {
 			array(
 				'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
 				'nonce'    => wp_create_nonce( 'nafha_box' ),
-				'boxes'    => self::BOXES,
+				'boxes'    => self::boxes(),
 				'currency' => html_entity_decode( get_woocommerce_currency_symbol(), ENT_QUOTES, 'UTF-8' ),
 				'i18n'     => array(
 					/* translators: 1: perfumes chosen, 2: box size. */
@@ -140,7 +168,7 @@ final class Nafha_Offers {
 				<fieldset>
 					<legend><?php esc_html_e( '1. Choose your box', 'nafha-core' ); ?></legend>
 					<div class="nafha-box__choices">
-						<?php foreach ( self::BOXES as $count => $discount ) : ?>
+						<?php foreach ( self::boxes() as $count => $discount ) : ?>
 							<label class="nafha-box__choice">
 								<input type="radio" name="nafha_box_count" value="<?php echo esc_attr( $count ); ?>"<?php checked( 3, $count ); ?>>
 								<span>
@@ -210,7 +238,7 @@ final class Nafha_Offers {
 		$size  = sanitize_key( wp_unslash( $_POST['size'] ?? '' ) );
 		$items = array_values( array_unique( array_map( 'absint', (array) wp_unslash( $_POST['items'] ?? array() ) ) ) );
 
-		if ( ! isset( self::BOXES[ $count ] ) || ! in_array( $size, self::BOX_SIZES, true ) || count( $items ) !== $count ) {
+		if ( ! isset( self::boxes()[ $count ] ) || ! in_array( $size, self::BOX_SIZES, true ) || count( $items ) !== $count ) {
 			wp_send_json_error( array( 'message' => __( 'Please choose exactly the number of perfumes for your box.', 'nafha-core' ) ), 400 );
 		}
 
@@ -234,7 +262,7 @@ final class Nafha_Offers {
 			'id'       => strtoupper( wp_generate_password( 6, false ) ),
 			'count'    => $count,
 			'size'     => $size,
-			'discount' => self::BOXES[ $count ],
+			'discount' => self::boxes()[ $count ],
 		);
 		foreach ( $parents as $parent_id => $variation ) {
 			$added = WC()->cart->add_to_cart( $parent_id, 1, $variation->get_id(), $variation->get_variation_attributes(), array( self::CART_KEY => $box ) );
@@ -364,7 +392,7 @@ final class Nafha_Offers {
 	 */
 	private static function tier_for( $quantity ) {
 		$pct = 0;
-		foreach ( self::QUANTITY_TIERS as $min => $discount ) {
+		foreach ( self::tiers() as $min => $discount ) {
 			if ( $quantity >= $min ) {
 				$pct = $discount;
 			}
@@ -397,7 +425,7 @@ final class Nafha_Offers {
 			return;
 		}
 		$current = self::tier_for( $quantity );
-		foreach ( self::QUANTITY_TIERS as $min => $pct ) {
+		foreach ( self::tiers() as $min => $pct ) {
 			if ( $quantity < $min ) {
 				$message = sprintf(
 					/* translators: 1: samples still needed, 2: discount percentage. */

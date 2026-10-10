@@ -99,7 +99,7 @@ function nafha_set_content( $slug, $content ) {
 $wa_number  = Nafha_Settings::whatsapp_number();
 $wa_display = '‎+' . substr( $wa_number, 0, 3 ) . ' ' . substr( $wa_number, 3, 2 ) . ' ' . substr( $wa_number, 5, 3 ) . ' ' . substr( $wa_number, 8 );
 $wa_link    = 'https://wa.me/' . $wa_number;
-$free_min   = (int) get_option( 'nafha_free_shipping_min', 60 );
+$free_min   = (int) Nafha_Shipping::free_shipping_min(); // From the shipping zones.
 $shop_url   = wc_get_page_permalink( 'shop' );
 $url        = static fn( $slug ) => get_permalink( get_page_by_path( $slug ) );
 $cat_url    = static fn( $slug ) => get_term_link( $slug, 'product_cat' );

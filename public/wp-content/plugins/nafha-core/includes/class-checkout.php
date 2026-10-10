@@ -98,7 +98,7 @@ final class Nafha_Checkout {
 				'priority'    => 20,
 			),
 			'state'      => array(
-				'class'    => array( 'form-row-wide', 'address-field' ),
+				'class'    => array( 'form-row-wide', 'address-field', 'update_totals_on_change' ), // Area drives the delivery price: recalc totals on change.
 				'priority' => 40,
 			),
 			'address_1'  => array(

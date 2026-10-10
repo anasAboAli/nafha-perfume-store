@@ -178,7 +178,7 @@ foreach ( $zones as $order => $def ) {
 	);
 	nafha_setup_log( sprintf( '%s: $%s, free over $%s', $def['name'], $def['cost'], $free_shipping_min ) );
 }
-update_option( 'nafha_free_shipping_min', $free_shipping_min );
+delete_option( 'nafha_free_shipping_min' ); // Superseded: the threshold is read from the zones (Nafha_Shipping::free_shipping_min).
 
 /* --------------------------------------------------------- payment gateways */
 

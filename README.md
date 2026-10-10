@@ -29,6 +29,9 @@ Start services: run XAMPP Control Panel → start **Apache** and **MySQL**.
 | Rebuild the product search index | `tools/wp.sh nafha reindex` |
 | Lighthouse (mobile) on key pages | `tools/lighthouse.sh <label>` |
 | Check Arabic translations are complete | `/c/xampp/php/php.exe tools/check-translations.php` |
+| Browser tests (iPhone/WebKit, Android/Chromium, desktop Chromium; `npx playwright install` once) | `(cd tools && npx playwright test -c e2e --project=webkit-iphone --project=chromium-android --project=chromium-desktop)` |
+| Scan pages for untranslated words | `(cd tools && node e2e/i18n-scan.js)` |
+| Remove e2e test orders + reset demo stock | `tools/wp.sh eval-file tools/e2e/cleanup.php` |
 
 Local e-mails are not sent: `mu-plugins/nafha-local-mail.php` saves them to `wp-content/uploads/nafha-mail/` (only when `WP_ENVIRONMENT_TYPE` is `local`).
 
@@ -38,8 +41,8 @@ Demo products are flagged with `_nafha_demo` — see the header of `tools/setup/
 | Module | What it does |
 |---|---|
 | `class-qatar-areas.php` | Qatar municipalities as checkout areas (drive shipping zones) |
-| `class-shipping.php` | Hides paid rates once free shipping applies |
-| `class-settings.php` | WooCommerce → Settings → Nafha (WhatsApp number) |
+| `class-shipping.php` | Hides paid rates once free shipping applies; `free_shipping_min()` reads the threshold from the zones |
+| `class-settings.php` | WooCommerce → Settings → Nafha (WhatsApp number, GTM, consent bar, box / sample discount rules) |
 | `class-fragrance-profile.php` | "Fragrance profile" product tab: notes, longevity, sillage, English name, video |
 | `class-variation-buttons.php` | Size buttons with per-size price (replaces the dropdown) |
 | `class-whatsapp.php` | "Order via WhatsApp" button with product/size/qty/price message |
@@ -58,3 +61,4 @@ Demo products are flagged with `_nafha_demo` — see the header of `tools/setup/
 | `class-product-feed.php` | Google Merchant / Meta Catalog feed at `/feed/nafha-products/` |
 | `class-performance.php` | jQuery chain to footer, inline small CSS, LCP image priority, WebP thumbnails, no emoji/unused assets |
 | `class-search.php` | Normalised product search index (Arabic variants, English names, brands + aliases, notes); `wp nafha reindex` |
+| `class-translation-gaps.php` | Arabic for the few Blocksy/WooCommerce strings missing from their language packs (screen-reader labels) |

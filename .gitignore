@@ -19,3 +19,6 @@
 !/public/wp-content/mu-plugins/nafha-local-mail.php
 
 /tools/reports/
+/backups/
+
+/tools/test-results/

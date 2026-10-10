@@ -192,6 +192,24 @@ return array(
 		"Add %1\$d more sample and get %2\$d%% off your samples\0Add %1\$d more samples and get %2\$d%% off your samples" => "أضف %1\$d عينات واحصل على خصم %2\$d%% على العينات\0أضف عينة واحدة فقط واحصل على خصم %2\$d%% على العينات\0أضف عينتين واحصل على خصم %2\$d%% على العينات\0أضف %1\$d عينات واحصل على خصم %2\$d%% على العينات\0أضف %1\$d عينة واحصل على خصم %2\$d%% على العينات\0أضف %1\$d عينة واحصل على خصم %2\$d%% على العينات",
 		'%d%% sample discount applied' => 'تم تطبيق خصم %d%% على العينات',
 
+		// Offers settings.
+		'Offers'                => 'العروض',
+		'Write each rule as count:percent, separated by commas.' => 'اكتب كل قاعدة بالشكل عدد:نسبة، وافصل بين القواعد بفاصلة.',
+		'Discovery box discounts' => 'خصومات صندوق التجربة',
+		'Box sizes offered and their discount, e.g. 3:10, 5:20 (3 perfumes −10%, 5 perfumes −20%).' => 'أحجام الصناديق المتاحة وخصم كل منها، مثال: 3:10, 5:20 (3 عطور خصم 10%، 5 عطور خصم 20%).',
+		'Sample quantity discounts' => 'خصم كمية العينات',
+		'Discount on 5/10 ml samples bought outside a box, e.g. 3:10, 5:15. Leave empty to turn the offer off.' => 'خصم على عينات 5 و10 مل المشتراة خارج الصناديق، مثال: 3:10, 5:15. اتركه فارغًا لإيقاف العرض.',
+
+		// Gaps in the Blocksy / WooCommerce Arabic packs (screen-reader labels).
+		'Close drawer'          => 'إغلاق القائمة الجانبية',
+		'Close search modal'    => 'إغلاق نافذة البحث',
+		'Offcanvas modal'       => 'القائمة الجانبية',
+		'Products pagination'   => 'التنقل بين صفحات المنتجات',
+		'Posts pagination'      => 'التنقل بين صفحات المقالات',
+		'Search results pagination' => 'التنقل بين صفحات نتائج البحث',
+		'Product Details'       => 'تفاصيل المنتج',
+		'Remove %s from cart'   => 'إزالة %s من السلة',
+
 		// Tracking & consent.
 		'Tracking'              => 'التتبع',
 		'Google Analytics 4, Meta and TikTok pixels are added inside Google Tag Manager; the site already sends the e-commerce events. See docs/TRACKING.md.' => 'تُضاف Google Analytics 4 وبكسل ميتا وتيك توك من داخل Google Tag Manager، والموقع يرسل أحداث التجارة الإلكترونية جاهزة. التفاصيل في docs/TRACKING.md.',
