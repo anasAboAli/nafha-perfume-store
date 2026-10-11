@@ -3,7 +3,7 @@
 An Arabic (RTL), mobile-first WooCommerce store for perfume decants — 5/10/30 ml samples split from original bottles, full bottles and gift sets — with delivery across Qatar.
 Built on WordPress + WooCommerce + Blocksy, with a custom plugin (`nafha-core`) instead of a stack of third-party plugins.
 
-**Live:** _link added after publishing_ · Requirements: [docs/requirements.pdf](docs/requirements.pdf) · Plan: [docs/PLAN.md](docs/PLAN.md)
+**Live:** [nafha.great-site.net](https://nafha.great-site.net) · Requirements: [docs/requirements.pdf](docs/requirements.pdf) · Plan: [docs/PLAN.md](docs/PLAN.md)
 
 | Home | Product | Fragrance quiz | Side cart |
 |---|---|---|---|
